@@ -1,0 +1,335 @@
+{
+ "case": {
+  "id": "burgess",
+  "title": "Burgess (PFD 2024-0077): neurology/GP list vs care home MAR",
+  "ref": "PFD 2024-0077 (Burgess; response from Godfrey Care dated 27 Mar 2024; events July 2022)",
+  "source_url": "https://www.judiciary.uk/wp-content/uploads/2024/02/2024-0077-Response-from-Godfrey-Care.pdf",
+  "coroner_fact": "'informed by Mr Burgess' mother and the Neurology department ... that the appropriate dose of Brivaracetam was 4ml twice daily' ... '10ml twice daily was commenced on 26 July 2022 following a call to the 111 service'.",
+  "documents": [
+   {
+    "role": "base",
+    "label": "Neurology / GP medicines list",
+    "text": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2024-0077  https://www.judiciary.uk/wp-content/uploads/2024/02/2024-0077-Response-from-Godfrey-Care.pdf\n\nTelephone record - Neurology dept (confirmed by mother), July 2022\nBrivaracetam 10mg/ml oral solution: 4 ml twice daily (morning & evening)\nContinue other regular medicines unchanged:\n  Omeprazole 20mg caps OD\n  Macrogol sachet 1 OD\n  Cholecalciferol 800 units OD\n"
+   },
+   {
+    "role": "care",
+    "label": "Care home MAR",
+    "text": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2024-0077  https://www.judiciary.uk/wp-content/uploads/2024/02/2024-0077-Response-from-Godfrey-Care.pdf\n\nMAR CHART  Resident: Mr B   Week commencing 25/07/2022\n22-25/07: brivaracetam WITHHELD - awaiting written instruction from prescriber\nBrivaracetam 10mg/ml soln   10 ml   BD  (started 26/07 after NHS 111 call)\nOmeprazole 20mg             1 cap   OD\nMacrogol                    1 sach  OD\nVit D3 800iu                1 tab   OD\n"
+   }
+  ],
+  "synthetic_note": "SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use."
+ },
+ "result": {
+  "case": "burgess",
+  "run_at": "2026-10-24 08:36:19 BST",
+  "claim": "The care record is consistent with the prescriber instruction.",
+  "threshold": 0.4,
+  "normalisation": [
+   {
+    "doc": "Neurology / GP medicines list",
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 3799,
+    "mubit_request_id": "mreq_01a16cd69eff7ff0866aa7e0811c7d8e"
+   },
+   {
+    "doc": "Care home MAR",
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 7154,
+    "mubit_request_id": "mreq_01a16cd69eb778d2afaedc0422ee89df"
+   }
+  ],
+  "medicines": [
+   {
+    "name": "brivaracetam",
+    "prescriber_history": [
+     [
+      "Neurology / GP medicines list",
+      "on existing list"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "brivaracetam",
+      "doc": "Care home MAR",
+      "prescriber_line": "brivaracetam: CURRENT PRESCRIPTION brivaracetam 10 mg/ml - 4 ml twice daily [active] (original text: \"Brivaracetam 10mg/ml oral solution: 4 ml twice daily (morning & evening)\")",
+      "care_line": "brivaracetam: brivaracetam 10 mg/ml - 10 ml twice daily [started] (original text: \"Brivaracetam 10mg/ml soln   10 ml   BD  (started 26/07 after NHS 111 call)\"; note: started 26/07 after NHS 111 call)",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "violation",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.037873824883130805,
+        "violation": 0.8377205709636052,
+        "insufficient_information": 0.10932762059152358,
+        "inconsistent_context": 0.015077983561740326
+       },
+       "violation": 0.8377205709636052,
+       "model_ms": 1059.463213001436,
+       "wall_ms": 3652,
+       "http": 200,
+       "evidence": "Prescriber record: brivaracetam: CURRENT PRESCRIPTION brivaracetam 10 mg/ml - 4 ml twice daily [active] (original text: \"Brivaracetam 10mg/ml oral solution: 4 ml twice daily (morning & evening)\")\nCare record: brivaracetam: brivaracetam 10 mg/ml - 10 ml twice daily [started] (original text: \"Brivaracetam 10mg/ml soln   10 ml   BD  (started 26/07 after NHS 111 call)\"; note: started 26/07 after NHS 111 call)"
+      },
+      "sapling_flag": true,
+      "flag": true
+     }
+    ],
+    "flag": true,
+    "max_violation": 0.8377205709636052
+   },
+   {
+    "name": "macrogol",
+    "prescriber_history": [
+     [
+      "Neurology / GP medicines list",
+      "on existing list"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "macrogol",
+      "doc": "Care home MAR",
+      "prescriber_line": "macrogol: CURRENT PRESCRIPTION macrogol - 1 sachet once daily [active] (original text: \"Macrogol sachet 1 OD\")",
+      "care_line": "macrogol: macrogol - 1 sach once daily [active] (original text: \"Macrogol                    1 sach  OD\")",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "insufficient_information",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.2827589824989084,
+        "violation": 0.08705254914988257,
+        "insufficient_information": 0.6040261115200481,
+        "inconsistent_context": 0.026162356831160943
+       },
+       "violation": 0.08705254914988257,
+       "model_ms": 1029.6121789979225,
+       "wall_ms": 1535,
+       "http": 200,
+       "evidence": "Prescriber record: macrogol: CURRENT PRESCRIPTION macrogol - 1 sachet once daily [active] (original text: \"Macrogol sachet 1 OD\")\nCare record: macrogol: macrogol - 1 sach once daily [active] (original text: \"Macrogol                    1 sach  OD\")"
+      },
+      "sapling_flag": false,
+      "flag": false
+     }
+    ],
+    "flag": false,
+    "max_violation": 0.08705254914988257
+   },
+   {
+    "name": "omeprazole",
+    "prescriber_history": [
+     [
+      "Neurology / GP medicines list",
+      "on existing list"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "omeprazole",
+      "doc": "Care home MAR",
+      "prescriber_line": "omeprazole: CURRENT PRESCRIPTION omeprazole 20 mg - 1 capsule once daily [active] (original text: \"Omeprazole 20mg caps OD\")",
+      "care_line": "omeprazole: omeprazole 20 mg - 1 cap once daily [active] (original text: \"Omeprazole 20mg             1 cap   OD\")",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "insufficient_information",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.3949700788825623,
+        "violation": 0.07670781539971756,
+        "insufficient_information": 0.5056807884902481,
+        "inconsistent_context": 0.022641317227472053
+       },
+       "violation": 0.07670781539971756,
+       "model_ms": 1042.2433089988772,
+       "wall_ms": 2582,
+       "http": 200,
+       "evidence": "Prescriber record: omeprazole: CURRENT PRESCRIPTION omeprazole 20 mg - 1 capsule once daily [active] (original text: \"Omeprazole 20mg caps OD\")\nCare record: omeprazole: omeprazole 20 mg - 1 cap once daily [active] (original text: \"Omeprazole 20mg             1 cap   OD\")"
+      },
+      "sapling_flag": false,
+      "flag": false
+     }
+    ],
+    "flag": false,
+    "max_violation": 0.07670781539971756
+   },
+   {
+    "name": "colecalciferol",
+    "prescriber_history": [
+     [
+      "Neurology / GP medicines list",
+      "on existing list"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "colecalciferol",
+      "doc": "Care home MAR",
+      "prescriber_line": "colecalciferol: CURRENT PRESCRIPTION colecalciferol 800 units - 1 dose once daily [active] (original text: \"Cholecalciferol 800 units OD\")",
+      "care_line": "colecalciferol: colecalciferol 800 units - 1 tab once daily [active] (original text: \"Vit D3 800iu                1 tab   OD\")",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "insufficient_information",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.39356618102149643,
+        "violation": 0.060619189164571166,
+        "insufficient_information": 0.5240472828773326,
+        "inconsistent_context": 0.02176734693659987
+       },
+       "violation": 0.060619189164571166,
+       "model_ms": 1052.6681510018534,
+       "wall_ms": 4702,
+       "http": 200,
+       "evidence": "Prescriber record: colecalciferol: CURRENT PRESCRIPTION colecalciferol 800 units - 1 dose once daily [active] (original text: \"Cholecalciferol 800 units OD\")\nCare record: colecalciferol: colecalciferol 800 units - 1 tab once daily [active] (original text: \"Vit D3 800iu                1 tab   OD\")"
+      },
+      "sapling_flag": false,
+      "flag": false
+     }
+    ],
+    "flag": false,
+    "max_violation": 0.060619189164571166
+   }
+  ],
+  "elapsed_s": 11.9,
+  "normalised_lines": {
+   "Neurology / GP medicines list": [
+    {
+     "original": "Brivaracetam 10mg/ml oral solution: 4 ml twice daily (morning & evening)",
+     "generic_name": "brivaracetam",
+     "strength": 10,
+     "strength_unit": "mg/ml",
+     "dose": "4 ml",
+     "frequency": "twice daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "brivaracetam",
+     "canonical_text": "brivaracetam 10 mg/ml - 4 ml twice daily [active]"
+    },
+    {
+     "original": "Omeprazole 20mg caps OD",
+     "generic_name": "omeprazole",
+     "strength": 20,
+     "strength_unit": "mg",
+     "dose": "1 capsule",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "omeprazole",
+     "canonical_text": "omeprazole 20 mg - 1 capsule once daily [active]"
+    },
+    {
+     "original": "Macrogol sachet 1 OD",
+     "generic_name": "macrogol",
+     "strength": null,
+     "strength_unit": "",
+     "dose": "1 sachet",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "macrogol",
+     "canonical_text": "macrogol - 1 sachet once daily [active]"
+    },
+    {
+     "original": "Cholecalciferol 800 units OD",
+     "generic_name": "cholecalciferol",
+     "strength": 800,
+     "strength_unit": "units",
+     "dose": "1 dose",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "colecalciferol",
+     "canonical_text": "colecalciferol 800 units - 1 dose once daily [active]"
+    }
+   ],
+   "Care home MAR": [
+    {
+     "original": "Brivaracetam 10mg/ml soln   10 ml   BD  (started 26/07 after NHS 111 call)",
+     "generic_name": "brivaracetam",
+     "strength": 10,
+     "strength_unit": "mg/ml",
+     "dose": "10 ml",
+     "frequency": "twice daily",
+     "status": "started",
+     "replaces": null,
+     "note": "started 26/07 after NHS 111 call",
+     "canonical_name": "brivaracetam",
+     "canonical_text": "brivaracetam 10 mg/ml - 10 ml twice daily [started]"
+    },
+    {
+     "original": "Omeprazole 20mg             1 cap   OD",
+     "generic_name": "omeprazole",
+     "strength": 20,
+     "strength_unit": "mg",
+     "dose": "1 cap",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "omeprazole",
+     "canonical_text": "omeprazole 20 mg - 1 cap once daily [active]"
+    },
+    {
+     "original": "Macrogol                    1 sach  OD",
+     "generic_name": "macrogol",
+     "strength": null,
+     "strength_unit": "",
+     "dose": "1 sach",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "macrogol",
+     "canonical_text": "macrogol - 1 sach once daily [active]"
+    },
+    {
+     "original": "Vit D3 800iu                1 tab   OD",
+     "generic_name": "colecalciferol",
+     "strength": 800,
+     "strength_unit": "units",
+     "dose": "1 tab",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "colecalciferol",
+     "canonical_text": "colecalciferol 800 units - 1 tab once daily [active]"
+    }
+   ]
+  }
+ }
+}

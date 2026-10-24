@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedMatch: catching medicine mismatches across care handovers</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark"></span>MedMatch</div>
+  <nav class="cases" id="cases"></nav>
+  <div class="controls">
+    <button id="prev" class="btn ghost" aria-label="Previous step">Back</button>
+    <button id="play" class="btn ghost">Play</button>
+    <button id="next" class="btn primary">Next</button>
+  </div>
+</header>
+<div class="progress" id="progress"></div>
+<main id="stage"></main>
+<footer class="foot">
+  <span>Synthetic data reconstructed from public coroner reports. Not for clinical use.</span>
+  <span>Sapling outputs are shown as returned: every status was <em>unsure</em>; we flag at violation &ge; 0.4.</span>
+  <a href="https://github.com/esh1306/medmatch">github.com/esh1306/medmatch</a>
+</footer>
+<script src="app.js"></script>
+</body></html>

@@ -1,0 +1,579 @@
+{
+ "case": {
+  "id": "elliott",
+  "title": "Elliott (PFD 2025-0515): GP list + discharge letter vs care home eMAR",
+  "ref": "PFD 2025-0515 (Thompson Elliott, report dated 14 Oct 2025)",
+  "source_url": "https://www.judiciary.uk/prevention-of-future-death-reports/thompson-elliott-prevention-of-future-deaths-report/",
+  "coroner_fact": "Oramorph was switched to oxycodone because of its impact on his kidneys; oxycodone was then 'incorrectly added to the record as new and additional medication - not replacement medication'.",
+  "documents": [
+   {
+    "role": "base",
+    "label": "GP medicines list (existing)",
+    "text": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2025-0515  https://www.judiciary.uk/prevention-of-future-death-reports/thompson-elliott-prevention-of-future-deaths-report/\n\nGP PRACTICE - REPEAT MEDICATION LIST (before admission, Dec 2024)\nPt: T.E.\n- Oramorph 10mg/5ml oral solution - 2.5ml every 4 hours when required for pain\n- Paracetamol 500mg tablets - 2 four times a day\n- Amlodipine 5mg - 1 daily\n- Laxido sachets - 1 twice daily\n- Atorvastatin 20mg - 1 at night\n"
+   },
+   {
+    "role": "update",
+    "label": "Hospital discharge letter",
+    "text": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2025-0515  https://www.judiciary.uk/prevention-of-future-death-reports/thompson-elliott-prevention-of-future-deaths-report/\n\nDISCHARGE SUMMARY - Ward 7   Date of discharge: 18/12/2024   Destination: residential care home\nPt: T.E.   Reason for admission: pain / reduced kidney function\n\nMEDICATION CHANGES\nSTOPPED:  Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP. Reason: impact on renal function.\nSTARTED:  Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).\nUNCHANGED:\n  Paracetamol 500mg 2 tabs QDS\n  Amlodipine 5mg OD\n  Laxido 1 sachet BD\n  Atorvastatin 20mg ON\n"
+   },
+   {
+    "role": "care",
+    "label": "Care home eMAR",
+    "text": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2025-0515  https://www.judiciary.uk/prevention-of-future-death-reports/thompson-elliott-prevention-of-future-deaths-report/\n\neMAR - Resident T.E. - Room 12 - printed 20/12/2024 21:00\nMedicine                          Instruction           Status   Notes\nParacetamol 500mg tab             2 QDS                 Active\nAmlodipine 5mg tab                1 OD                  Active\nLaxido sachet                     1 BD                  Active\nAtorvastatin 20mg                 1 night               Active\nOramorph 10mg/5ml                 2.5ml 4hrly PRN       Active   given 18/12, 19/12, 20/12\nOxycodone 5mg/5ml liquid          2.5ml 4hrly PRN       Active   NEW - added 20/12 (additional)\nDischarge letter: not located\n"
+   }
+  ],
+  "synthetic_note": "SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use."
+ },
+ "result": {
+  "case": "elliott",
+  "run_at": "2026-10-24 08:36:02 BST",
+  "claim": "The care record is consistent with the prescriber instruction.",
+  "threshold": 0.4,
+  "normalisation": [
+   {
+    "doc": "GP medicines list (existing)",
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 4597,
+    "mubit_request_id": "mreq_01a16cd609377683bb38503b1eda4ccc"
+   },
+   {
+    "doc": "Hospital discharge letter",
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 6257,
+    "mubit_request_id": "mreq_01a16cd608d779b19e052f16ccb72c83"
+   },
+   {
+    "doc": "Care home eMAR",
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 8215,
+    "mubit_request_id": "mreq_01a16cd608c879e0b314775cd32a06a0"
+   }
+  ],
+  "medicines": [
+   {
+    "name": "morphine sulfate",
+    "prescriber_history": [
+     [
+      "GP medicines list (existing)",
+      "on existing list"
+     ],
+     [
+      "Hospital discharge letter",
+      "stopped"
+     ],
+     [
+      "Hospital discharge letter",
+      "replaced by oxycodone"
+     ]
+    ],
+    "currently_prescribed": false,
+    "comparisons": [
+     {
+      "name": "morphine sulfate",
+      "doc": "Care home eMAR",
+      "prescriber_line": "morphine sulfate: NOT CURRENTLY PRESCRIBED (on existing list; stopped; replaced by oxycodone). Last prescriber line: morphine sulfate 10 mg/5ml - 5 ml when required [stopped] (original text: \"Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP.\"; note: Reason: impact on renal function.)",
+      "care_line": "morphine sulfate: morphine sulfate 10 mg/ml - 2.5 ml every 4 hours when required [active] (original text: \"Oramorph 10mg/5ml                 2.5ml 4hrly PRN       Active   given 18/12, 19/12, 20/12\"; note: given 18/12, 19/12, 20/12)",
+      "rule": "Extra: on this chart as active but not currently prescribed (on existing list; stopped; replaced by oxycodone)",
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "violation",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.06276794235672477,
+        "violation": 0.6193899490985787,
+        "insufficient_information": 0.25769069546334483,
+        "inconsistent_context": 0.0601514130813518
+       },
+       "violation": 0.6193899490985787,
+       "model_ms": 1070.5257749978045,
+       "wall_ms": 4740,
+       "http": 200,
+       "evidence": "Prescriber record: morphine sulfate: NOT CURRENTLY PRESCRIBED (on existing list; stopped; replaced by oxycodone). Last prescriber line: morphine sulfate 10 mg/5ml - 5 ml when required [stopped] (original text: \"Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP.\"; note: Reason: impact on renal function.)\nCare record: morphine sulfate: morphine sulfate 10 mg/ml - 2.5 ml every 4 hours when required [active] (original text: \"Oramorph 10mg/5ml                 2.5ml 4hrly PRN       Active   given 18/12, 19/12, 20/12\"; note: given 18/12, 19/12, 20/12)"
+      },
+      "sapling_flag": true,
+      "flag": true
+     }
+    ],
+    "flag": true,
+    "max_violation": 0.6193899490985787
+   },
+   {
+    "name": "paracetamol",
+    "prescriber_history": [
+     [
+      "GP medicines list (existing)",
+      "on existing list"
+     ],
+     [
+      "Hospital discharge letter",
+      "confirmed"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "paracetamol",
+      "doc": "Care home eMAR",
+      "prescriber_line": "paracetamol: CURRENT PRESCRIPTION paracetamol 500 mg - 2 tablets four times daily [active] (original text: \"Paracetamol 500mg 2 tabs QDS\")",
+      "care_line": "paracetamol: paracetamol 500 mg - 2 tablets four times daily [active] (original text: \"Paracetamol 500mg tab             2 QDS                 Active\")",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "insufficient_information",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.34274027604515694,
+        "violation": 0.07260379169036507,
+        "insufficient_information": 0.5626011692755395,
+        "inconsistent_context": 0.02205476298893835
+       },
+       "violation": 0.07260379169036507,
+       "model_ms": 1043.3855099981884,
+       "wall_ms": 1583,
+       "http": 200,
+       "evidence": "Prescriber record: paracetamol: CURRENT PRESCRIPTION paracetamol 500 mg - 2 tablets four times daily [active] (original text: \"Paracetamol 500mg 2 tabs QDS\")\nCare record: paracetamol: paracetamol 500 mg - 2 tablets four times daily [active] (original text: \"Paracetamol 500mg tab             2 QDS                 Active\")"
+      },
+      "sapling_flag": false,
+      "flag": false
+     }
+    ],
+    "flag": false,
+    "max_violation": 0.07260379169036507
+   },
+   {
+    "name": "atorvastatin",
+    "prescriber_history": [
+     [
+      "GP medicines list (existing)",
+      "on existing list"
+     ],
+     [
+      "Hospital discharge letter",
+      "dose changed"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "atorvastatin",
+      "doc": "Care home eMAR",
+      "prescriber_line": "atorvastatin: CURRENT PRESCRIPTION atorvastatin 20 mg - 1 tablet once nightly [active] (original text: \"Atorvastatin 20mg ON\")",
+      "care_line": "atorvastatin: atorvastatin 20 mg - 1 tablet at night [active] (original text: \"Atorvastatin 20mg                 1 night               Active\")",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "insufficient_information",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.3903638296982177,
+        "violation": 0.07111143917131428,
+        "insufficient_information": 0.5164603317311104,
+        "inconsistent_context": 0.02206439939935771
+       },
+       "violation": 0.07111143917131428,
+       "model_ms": 1044.4105850001506,
+       "wall_ms": 3667,
+       "http": 200,
+       "evidence": "Prescriber record: atorvastatin: CURRENT PRESCRIPTION atorvastatin 20 mg - 1 tablet once nightly [active] (original text: \"Atorvastatin 20mg ON\")\nCare record: atorvastatin: atorvastatin 20 mg - 1 tablet at night [active] (original text: \"Atorvastatin 20mg                 1 night               Active\")"
+      },
+      "sapling_flag": false,
+      "flag": false
+     }
+    ],
+    "flag": false,
+    "max_violation": 0.07111143917131428
+   },
+   {
+    "name": "amlodipine",
+    "prescriber_history": [
+     [
+      "GP medicines list (existing)",
+      "on existing list"
+     ],
+     [
+      "Hospital discharge letter",
+      "dose changed"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "amlodipine",
+      "doc": "Care home eMAR",
+      "prescriber_line": "amlodipine: CURRENT PRESCRIPTION amlodipine 5 mg - 1 tablet once daily [active] (original text: \"Amlodipine 5mg OD\")",
+      "care_line": "amlodipine: amlodipine 5 mg - 1 tablet once daily [active] (original text: \"Amlodipine 5mg tab                1 OD                  Active\")",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "insufficient_information",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.3280682093746812,
+        "violation": 0.0698807488799306,
+        "insufficient_information": 0.5821535890484705,
+        "inconsistent_context": 0.019897452696917842
+       },
+       "violation": 0.0698807488799306,
+       "model_ms": 1049.0904449980007,
+       "wall_ms": 24543,
+       "http": 200,
+       "evidence": "Prescriber record: amlodipine: CURRENT PRESCRIPTION amlodipine 5 mg - 1 tablet once daily [active] (original text: \"Amlodipine 5mg OD\")\nCare record: amlodipine: amlodipine 5 mg - 1 tablet once daily [active] (original text: \"Amlodipine 5mg tab                1 OD                  Active\")"
+      },
+      "sapling_flag": false,
+      "flag": false
+     }
+    ],
+    "flag": false,
+    "max_violation": 0.0698807488799306
+   },
+   {
+    "name": "oxycodone",
+    "prescriber_history": [
+     [
+      "Hospital discharge letter",
+      "started"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "oxycodone",
+      "doc": "Care home eMAR",
+      "prescriber_line": "oxycodone: CURRENT PRESCRIPTION oxycodone 5 mg/5ml - 2.5 ml every 4 hours when required [started] (original text: \"Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).\"; note: renal.)",
+      "care_line": "oxycodone: oxycodone 5 mg/ml - 2.5 ml every 4 hours when required [active] (original text: \"Oxycodone 5mg/5ml liquid          2.5ml 4hrly PRN       Active   NEW - added 20/12 (additional)\"; note: NEW - added 20/12 (additional))",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "insufficient_information",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.2053673038422554,
+        "violation": 0.06708472669983735,
+        "insufficient_information": 0.7056451181673873,
+        "inconsistent_context": 0.021902851290519824
+       },
+       "violation": 0.06708472669983735,
+       "model_ms": 1054.2845370000578,
+       "wall_ms": 25599,
+       "http": 200,
+       "evidence": "Prescriber record: oxycodone: CURRENT PRESCRIPTION oxycodone 5 mg/5ml - 2.5 ml every 4 hours when required [started] (original text: \"Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).\"; note: renal.)\nCare record: oxycodone: oxycodone 5 mg/ml - 2.5 ml every 4 hours when required [active] (original text: \"Oxycodone 5mg/5ml liquid          2.5ml 4hrly PRN       Active   NEW - added 20/12 (additional)\"; note: NEW - added 20/12 (additional))"
+      },
+      "sapling_flag": false,
+      "flag": false
+     }
+    ],
+    "flag": false,
+    "max_violation": 0.06708472669983735
+   },
+   {
+    "name": "macrogol",
+    "prescriber_history": [
+     [
+      "GP medicines list (existing)",
+      "on existing list"
+     ],
+     [
+      "Hospital discharge letter",
+      "dose changed"
+     ]
+    ],
+    "currently_prescribed": true,
+    "comparisons": [
+     {
+      "name": "macrogol",
+      "doc": "Care home eMAR",
+      "prescriber_line": "macrogol: CURRENT PRESCRIPTION macrogol - 1 sachet twice daily [active] (original text: \"Laxido 1 sachet BD\")",
+      "care_line": "macrogol: macrogol - 1 sachet twice daily [active] (original text: \"Laxido sachet                     1 BD                  Active\")",
+      "rule": null,
+      "sapling": {
+       "status": "unsure",
+       "raw_label": "insufficient_information",
+       "prediction_set": [
+        "supported",
+        "violation",
+        "insufficient_information",
+        "inconsistent_context"
+       ],
+       "probabilities": {
+        "supported": 0.3486494623682894,
+        "violation": 0.06448175851025136,
+        "insufficient_information": 0.5671486177565795,
+        "inconsistent_context": 0.019720161364879838
+       },
+       "violation": 0.06448175851025136,
+       "model_ms": 1039.39375200207,
+       "wall_ms": 2617,
+       "http": 200,
+       "evidence": "Prescriber record: macrogol: CURRENT PRESCRIPTION macrogol - 1 sachet twice daily [active] (original text: \"Laxido 1 sachet BD\")\nCare record: macrogol: macrogol - 1 sachet twice daily [active] (original text: \"Laxido sachet                     1 BD                  Active\")"
+      },
+      "sapling_flag": false,
+      "flag": false
+     }
+    ],
+    "flag": false,
+    "max_violation": 0.06448175851025136
+   }
+  ],
+  "elapsed_s": 33.8,
+  "normalised_lines": {
+   "GP medicines list (existing)": [
+    {
+     "original": "Oramorph 10mg/5ml oral solution - 2.5ml every 4 hours when required for pain",
+     "generic_name": "morphine sulfate",
+     "strength": 10,
+     "strength_unit": "mg/5ml",
+     "dose": "2.5 ml",
+     "frequency": "every 4 hours when required",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "morphine sulfate",
+     "canonical_text": "morphine sulfate 10 mg/5ml - 2.5 ml every 4 hours when required [active]"
+    },
+    {
+     "original": "Paracetamol 500mg tablets - 2 four times a day",
+     "generic_name": "paracetamol",
+     "strength": 500,
+     "strength_unit": "mg",
+     "dose": "2 tablets",
+     "frequency": "four times daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "paracetamol",
+     "canonical_text": "paracetamol 500 mg - 2 tablets four times daily [active]"
+    },
+    {
+     "original": "Amlodipine 5mg - 1 daily",
+     "generic_name": "amlodipine",
+     "strength": 5,
+     "strength_unit": "mg",
+     "dose": "1",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "amlodipine",
+     "canonical_text": "amlodipine 5 mg - 1 once daily [active]"
+    },
+    {
+     "original": "Laxido sachets - 1 twice daily",
+     "generic_name": "macrogol",
+     "strength": null,
+     "strength_unit": "",
+     "dose": "1",
+     "frequency": "twice daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "macrogol",
+     "canonical_text": "macrogol - 1 twice daily [active]"
+    },
+    {
+     "original": "Atorvastatin 20mg - 1 at night",
+     "generic_name": "atorvastatin",
+     "strength": 20,
+     "strength_unit": "mg",
+     "dose": "1",
+     "frequency": "at night",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "atorvastatin",
+     "canonical_text": "atorvastatin 20 mg - 1 at night [active]"
+    }
+   ],
+   "Hospital discharge letter": [
+    {
+     "original": "Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP.",
+     "generic_name": "morphine sulfate",
+     "strength": 10,
+     "strength_unit": "mg/5ml",
+     "dose": "5 ml",
+     "frequency": "when required",
+     "status": "stopped",
+     "replaces": null,
+     "note": "Reason: impact on renal function.",
+     "canonical_name": "morphine sulfate",
+     "canonical_text": "morphine sulfate 10 mg/5ml - 5 ml when required [stopped]"
+    },
+    {
+     "original": "Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).",
+     "generic_name": "oxycodone",
+     "strength": 5,
+     "strength_unit": "mg/5ml",
+     "dose": "2.5 ml",
+     "frequency": "every 4 hours when required",
+     "status": "started",
+     "replaces": "morphine sulfate",
+     "note": "renal.",
+     "canonical_name": "oxycodone",
+     "canonical_text": "oxycodone 5 mg/5ml - 2.5 ml every 4 hours when required [started]"
+    },
+    {
+     "original": "Paracetamol 500mg 2 tabs QDS",
+     "generic_name": "paracetamol",
+     "strength": 500,
+     "strength_unit": "mg",
+     "dose": "2 tablets",
+     "frequency": "four times daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "paracetamol",
+     "canonical_text": "paracetamol 500 mg - 2 tablets four times daily [active]"
+    },
+    {
+     "original": "Amlodipine 5mg OD",
+     "generic_name": "amlodipine",
+     "strength": 5,
+     "strength_unit": "mg",
+     "dose": "1 tablet",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "amlodipine",
+     "canonical_text": "amlodipine 5 mg - 1 tablet once daily [active]"
+    },
+    {
+     "original": "Laxido 1 sachet BD",
+     "generic_name": "laxido",
+     "strength": null,
+     "strength_unit": "",
+     "dose": "1 sachet",
+     "frequency": "twice daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "macrogol",
+     "canonical_text": "macrogol - 1 sachet twice daily [active]"
+    },
+    {
+     "original": "Atorvastatin 20mg ON",
+     "generic_name": "atorvastatin",
+     "strength": 20,
+     "strength_unit": "mg",
+     "dose": "1 tablet",
+     "frequency": "once nightly",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "atorvastatin",
+     "canonical_text": "atorvastatin 20 mg - 1 tablet once nightly [active]"
+    }
+   ],
+   "Care home eMAR": [
+    {
+     "original": "Paracetamol 500mg tab             2 QDS                 Active",
+     "generic_name": "paracetamol",
+     "strength": 500,
+     "strength_unit": "mg",
+     "dose": "2 tablets",
+     "frequency": "four times daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "paracetamol",
+     "canonical_text": "paracetamol 500 mg - 2 tablets four times daily [active]"
+    },
+    {
+     "original": "Amlodipine 5mg tab                1 OD                  Active",
+     "generic_name": "amlodipine",
+     "strength": 5,
+     "strength_unit": "mg",
+     "dose": "1 tablet",
+     "frequency": "once daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "amlodipine",
+     "canonical_text": "amlodipine 5 mg - 1 tablet once daily [active]"
+    },
+    {
+     "original": "Laxido sachet                     1 BD                  Active",
+     "generic_name": "macrogol",
+     "strength": null,
+     "strength_unit": "",
+     "dose": "1 sachet",
+     "frequency": "twice daily",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "macrogol",
+     "canonical_text": "macrogol - 1 sachet twice daily [active]"
+    },
+    {
+     "original": "Atorvastatin 20mg                 1 night               Active",
+     "generic_name": "atorvastatin",
+     "strength": 20,
+     "strength_unit": "mg",
+     "dose": "1 tablet",
+     "frequency": "at night",
+     "status": "active",
+     "replaces": null,
+     "note": null,
+     "canonical_name": "atorvastatin",
+     "canonical_text": "atorvastatin 20 mg - 1 tablet at night [active]"
+    },
+    {
+     "original": "Oramorph 10mg/5ml                 2.5ml 4hrly PRN       Active   given 18/12, 19/12, 20/12",
+     "generic_name": "morphine sulfate",
+     "strength": 10,
+     "strength_unit": "mg/ml",
+     "dose": "2.5 ml",
+     "frequency": "every 4 hours when required",
+     "status": "active",
+     "replaces": null,
+     "note": "given 18/12, 19/12, 20/12",
+     "canonical_name": "morphine sulfate",
+     "canonical_text": "morphine sulfate 10 mg/ml - 2.5 ml every 4 hours when required [active]"
+    },
+    {
+     "original": "Oxycodone 5mg/5ml liquid          2.5ml 4hrly PRN       Active   NEW - added 20/12 (additional)",
+     "generic_name": "oxycodone",
+     "strength": 5,
+     "strength_unit": "mg/ml",
+     "dose": "2.5 ml",
+     "frequency": "every 4 hours when required",
+     "status": "active",
+     "replaces": null,
+     "note": "NEW - added 20/12 (additional)",
+     "canonical_name": "oxycodone",
+     "canonical_text": "oxycodone 5 mg/ml - 2.5 ml every 4 hours when required [active]"
+    }
+   ]
+  }
+ }
+}
