@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Amlodipine 5mg - 1 b.d.",
+      "generic_name": "amlodipine",
+      "strength": 5,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "amlodipine",
+      "canonical_text": "amlodipine 5 mg - 1 tablet twice daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1540,
+    "mubit_request_id": "mreq_01a16cd6fbe0763291beafa428095d71"
+  }
+}

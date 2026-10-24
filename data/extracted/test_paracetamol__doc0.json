@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Paracetamol 500mg tablets - 2 four times daily",
+      "generic_name": "paracetamol",
+      "strength": 500,
+      "strength_unit": "mg",
+      "dose": "2 tablets",
+      "frequency": "four times daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "paracetamol",
+      "canonical_text": "paracetamol 500 mg - 2 tablets four times daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1751,
+    "mubit_request_id": "mreq_01a16cd6fc707e4193f8ef24d26828b0"
+  }
+}

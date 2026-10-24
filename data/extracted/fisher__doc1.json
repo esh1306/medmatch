@@ -1,0 +1,89 @@
+{
+  "lines": [
+    {
+      "original": "Na valproate liquid 200/5     | 10 ml PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+      "generic_name": "sodium valproate",
+      "strength": 200,
+      "strength_unit": "mg/5ml",
+      "dose": "10 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "sodium valproate",
+      "canonical_text": "sodium valproate 200 mg/5ml - 10 ml twice daily [active]"
+    },
+    {
+      "original": "Levetiracetam liquid          | 7.5 ml PO      | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+      "generic_name": "levetiracetam",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "7.5 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "levetiracetam",
+      "canonical_text": "levetiracetam - 7.5 ml twice daily [active]"
+    },
+    {
+      "original": "Phenobarbital 30mg tab        | 1 tab PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713  (from blister? box?)",
+      "generic_name": "phenobarbital",
+      "strength": 30,
+      "strength_unit": "mg",
+      "dose": "1 tab",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "phenobarbital",
+      "canonical_text": "phenobarbital 30 mg - 1 tab twice daily [active]"
+    },
+    {
+      "original": "Lansoprazole 15mg             | 1 PO           | 08:00      | \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+      "generic_name": "lansoprazole",
+      "strength": 15,
+      "strength_unit": "mg",
+      "dose": "1",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "lansoprazole",
+      "canonical_text": "lansoprazole 15 mg - 1 once daily [active]"
+    },
+    {
+      "original": "Amoxicillin liquid            | 20 ml PO       | TDS        | \u2713\u2713\u2713\u2713\u2713 (course end?)",
+      "generic_name": "amoxicillin",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "20 ml",
+      "frequency": "three times daily",
+      "status": "active",
+      "replaces": null,
+      "note": "course end?",
+      "canonical_name": "amoxicillin",
+      "canonical_text": "amoxicillin - 20 ml three times daily [active]"
+    },
+    {
+      "original": "Senna                         | 2 tabs PO      | night PRN  | -",
+      "generic_name": "senna",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "2 tabs",
+      "frequency": "at night when required",
+      "status": "withheld",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "senna",
+      "canonical_text": "senna - 2 tabs at night when required [withheld]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 6360,
+    "mubit_request_id": "mreq_01a16cd5ac3b72d1a764da0ac3125b2d"
+  }
+}

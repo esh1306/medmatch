@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Paracetamol 1000mg QDS",
+      "generic_name": "paracetamol",
+      "strength": 1000,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "four times daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "paracetamol",
+      "canonical_text": "paracetamol 1000 mg - 1 tablet four times daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1644,
+    "mubit_request_id": "mreq_01a16cd6fc247372ab362ff75c1b3ebf"
+  }
+}

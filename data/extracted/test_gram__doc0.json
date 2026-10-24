@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Paracetamol 1g four times daily",
+      "generic_name": "paracetamol",
+      "strength": 1000,
+      "strength_unit": "mg",
+      "dose": "1 g",
+      "frequency": "four times daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "paracetamol",
+      "canonical_text": "paracetamol 1000 mg - 1 g four times daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1462,
+    "mubit_request_id": "mreq_01a16cd6fbda7111b0cfce0391a0691b"
+  }
+}

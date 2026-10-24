@@ -1,0 +1,131 @@
+{
+  "case": "burgess",
+  "run_at": "2026-10-24 08:17:10 BST",
+  "policy": "A care medication record must match the most recent prescriber instruction: discontinued medicines must not be given, replacements must replace not add, doses must match, and every prescribed medicine must be on the administration chart.",
+  "claim": "The care record is consistent with the prescriber instruction.",
+  "threshold": 0.4,
+  "extraction": {
+    "mode": "live",
+    "model": "gpt-4o-mini",
+    "latency_ms": 3064,
+    "gateway": "https://api.mubit.ai/openai/v1"
+  },
+  "rows": [
+    {
+      "name": "Macrogol",
+      "prescriber_instruction": "Macrogol sachet 1 OD",
+      "care_record_line": "Macrogol                    1 sachet  OD",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.32467897644423466,
+          "violation": 0.08294893971551956,
+          "insufficient_information": 0.5689811645643904,
+          "inconsistent_context": 0.02339091927585539
+        },
+        "violation": 0.08294893971551956,
+        "model_ms": 1005.633480999677,
+        "wall_ms": 1599,
+        "http": 200,
+        "evidence": "Prescriber record: Macrogol: Macrogol sachet 1 OD\nCare record: Macrogol: Macrogol                    1 sachet  OD"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Omeprazole",
+      "prescriber_instruction": "Omeprazole 20mg caps OD",
+      "care_record_line": "Omeprazole 20mg             1 cap   OD",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.3817427660716533,
+          "violation": 0.07979893029719969,
+          "insufficient_information": 0.5164437912706464,
+          "inconsistent_context": 0.022014512360500508
+        },
+        "violation": 0.07979893029719969,
+        "model_ms": 1015.5397909984458,
+        "wall_ms": 2621,
+        "http": 200,
+        "evidence": "Prescriber record: Omeprazole: Omeprazole 20mg caps OD\nCare record: Omeprazole: Omeprazole 20mg             1 cap   OD"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Cholecalciferol",
+      "prescriber_instruction": "Cholecalciferol 800 units OD",
+      "care_record_line": "Vit D3 800iu                1 tab   OD",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "violation",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.037893792576135656,
+          "violation": 0.7975573739987472,
+          "insufficient_information": 0.1529106224478677,
+          "inconsistent_context": 0.01163821097724943
+        },
+        "violation": 0.7975573739987472,
+        "model_ms": 1014.7120370020275,
+        "wall_ms": 3631,
+        "http": 200,
+        "evidence": "Prescriber record: Cholecalciferol: Cholecalciferol 800 units OD\nCare record: Cholecalciferol: Vit D3 800iu                1 tab   OD"
+      },
+      "rule": null,
+      "sapling_flag": true,
+      "flag": true
+    },
+    {
+      "name": "Brivaracetam",
+      "prescriber_instruction": "Brivaracetam 10mg/ml oral solution: 4 ml twice daily (morning & evening)",
+      "care_record_line": "Brivaracetam 10mg/ml solution   10 ml   BD  (started 26/07 after NHS 111 call)",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "violation",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.07554617971741041,
+          "violation": 0.6455940218744367,
+          "insufficient_information": 0.24447706412187648,
+          "inconsistent_context": 0.03438273428627652
+        },
+        "violation": 0.6455940218744367,
+        "model_ms": 1036.2281050001911,
+        "wall_ms": 4678,
+        "http": 200,
+        "evidence": "Prescriber record: Brivaracetam: Brivaracetam 10mg/ml oral solution: 4 ml twice daily (morning & evening)\nCare record: Brivaracetam: Brivaracetam 10mg/ml solution   10 ml   BD  (started 26/07 after NHS 111 call)"
+      },
+      "rule": null,
+      "sapling_flag": true,
+      "flag": true
+    }
+  ]
+}

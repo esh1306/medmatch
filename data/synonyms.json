@@ -1,0 +1,30 @@
+{
+  "_source": "Hand-compiled reference table for the hackathon demo. Generic names follow RxNorm/openFDA generic naming (https://open.fda.gov/apis/drug/ndc/ , https://www.nlm.nih.gov/research/umls/rxnorm/) with UK names per NHS dm+d (https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/dictionary-medicines-and-devices-dmd). Small, illustrative, NOT a complete or clinically validated dictionary.",
+  "names": {
+    "vit d3": "colecalciferol", "vitamin d3": "colecalciferol", "vitamin d": "colecalciferol", "vit d": "colecalciferol",
+    "cholecalciferol": "colecalciferol", "colecalciferol": "colecalciferol",
+    "adcal-d3": "calcium carbonate + colecalciferol", "adcal d3": "calcium carbonate + colecalciferol",
+    "calcium carbonate and colecalciferol": "calcium carbonate + colecalciferol", "calcium carbonate + cholecalciferol": "calcium carbonate + colecalciferol",
+    "calcium carbonate/colecalciferol": "calcium carbonate + colecalciferol", "calcium and vitamin d": "calcium carbonate + colecalciferol",
+    "acetaminophen": "paracetamol", "paracetamol": "paracetamol", "calpol": "paracetamol",
+    "oramorph": "morphine sulfate", "morphine": "morphine sulfate", "morphine sulphate": "morphine sulfate", "morphine sulfate": "morphine sulfate",
+    "oxycodone": "oxycodone", "oxynorm": "oxycodone", "oxycodone hydrochloride": "oxycodone",
+    "na valproate": "sodium valproate", "valproate": "sodium valproate", "sodium valproate": "sodium valproate", "epilim": "sodium valproate", "valproic acid": "sodium valproate",
+    "phenobarbital": "phenobarbital", "phenobarbitone": "phenobarbital",
+    "levetiracetam": "levetiracetam", "keppra": "levetiracetam",
+    "brivaracetam": "brivaracetam", "briviact": "brivaracetam",
+    "laxido": "macrogol", "movicol": "macrogol", "macrogol": "macrogol", "macrogol 3350": "macrogol",
+    "senna": "senna", "sennosides": "senna", "senokot": "senna",
+    "lansoprazole": "lansoprazole", "zoton": "lansoprazole", "omeprazole": "omeprazole", "losec": "omeprazole",
+    "amoxicillin": "amoxicillin", "amoxycillin": "amoxicillin", "amlodipine": "amlodipine", "istin": "amlodipine",
+    "atorvastatin": "atorvastatin", "lipitor": "atorvastatin"
+  },
+  "frequency": {
+    "od": "once daily", "o.d.": "once daily", "daily": "once daily", "once a day": "once daily", "mane": "once daily", "morning": "once daily", "once daily": "once daily", "qd": "once daily",
+    "bd": "twice daily", "b.d.": "twice daily", "bid": "twice daily", "b.i.d.": "twice daily", "twice a day": "twice daily", "twice daily": "twice daily", "morning and tea": "twice daily", "08:00 20:00": "twice daily",
+    "tds": "three times daily", "t.d.s.": "three times daily", "tid": "three times daily", "t.i.d.": "three times daily", "three times a day": "three times daily", "three times daily": "three times daily", "mor/lunch/tea": "three times daily",
+    "qds": "four times daily", "q.d.s.": "four times daily", "qid": "four times daily", "four times a day": "four times daily", "four times daily": "four times daily",
+    "on": "at night", "nocte": "at night", "at night": "at night", "night": "at night", "bedtime": "at night"
+  },
+  "units": {"iu": "units", "i.u.": "units", "unit": "units", "units": "units", "mcg": "micrograms", "microgram": "micrograms", "micrograms": "micrograms", "mg": "mg", "g": "g", "ml": "ml", "mL": "ml"}
+}

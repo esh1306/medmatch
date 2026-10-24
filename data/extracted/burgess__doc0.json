@@ -1,0 +1,63 @@
+{
+  "lines": [
+    {
+      "original": "Brivaracetam 10mg/ml oral solution: 4 ml twice daily (morning & evening)",
+      "generic_name": "brivaracetam",
+      "strength": 10,
+      "strength_unit": "mg/ml",
+      "dose": "4 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "brivaracetam",
+      "canonical_text": "brivaracetam 10 mg/ml - 4 ml twice daily [active]"
+    },
+    {
+      "original": "Omeprazole 20mg caps OD",
+      "generic_name": "omeprazole",
+      "strength": 20,
+      "strength_unit": "mg",
+      "dose": "1 capsule",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "omeprazole",
+      "canonical_text": "omeprazole 20 mg - 1 capsule once daily [active]"
+    },
+    {
+      "original": "Macrogol sachet 1 OD",
+      "generic_name": "macrogol",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "1 sachet",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "macrogol",
+      "canonical_text": "macrogol - 1 sachet once daily [active]"
+    },
+    {
+      "original": "Cholecalciferol 800 units OD",
+      "generic_name": "cholecalciferol",
+      "strength": 800,
+      "strength_unit": "units",
+      "dose": "1 dose",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "colecalciferol",
+      "canonical_text": "colecalciferol 800 units - 1 dose once daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 3799,
+    "mubit_request_id": "mreq_01a16cd69eff7ff0866aa7e0811c7d8e"
+  }
+}

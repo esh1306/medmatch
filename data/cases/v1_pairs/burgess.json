@@ -1,0 +1,13 @@
+{
+  "id": "burgess",
+  "title": "Burgess: neurology / family instruction vs care home administration record",
+  "ref": "PFD 2024-0077 (Burgess; response from Godfrey Care dated 27 Mar 2024; events July 2022)",
+  "source_url": "https://www.judiciary.uk/wp-content/uploads/2024/02/2024-0077-Response-from-Godfrey-Care.pdf",
+  "news_url": "",
+  "coroner_fact": "'informed by Mr Burgess' mother and the Neurology department ... that the appropriate dose of Brivaracetam was 4ml twice daily' ... '10ml twice daily was commenced on 26 July 2022 following a call to the 111 service'.",
+  "left_label": "Neurology department / family instruction (prescriber)",
+  "left": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2024-0077  https://www.judiciary.uk/wp-content/uploads/2024/02/2024-0077-Response-from-Godfrey-Care.pdf\n\nTelephone record - Neurology dept (confirmed by mother), July 2022\nBrivaracetam 10mg/ml oral solution: 4 ml twice daily (morning & evening)\nContinue other regular medicines unchanged:\n  Omeprazole 20mg caps OD\n  Macrogol sachet 1 OD\n  Cholecalciferol 800 units OD\n",
+  "right_label": "Care home administration record from 26 Jul 2022 (care record)",
+  "right": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2024-0077  https://www.judiciary.uk/wp-content/uploads/2024/02/2024-0077-Response-from-Godfrey-Care.pdf\n\nMAR CHART  Resident: Mr B   Week commencing 25/07/2022\n22-25/07: brivaracetam WITHHELD - awaiting written instruction from prescriber\nBrivaracetam 10mg/ml soln   10 ml   BD  (started 26/07 after NHS 111 call)\nOmeprazole 20mg             1 cap   OD\nMacrogol                    1 sach  OD\nVit D3 800iu                1 tab   OD\n",
+  "synthetic_note": "SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use."
+}

@@ -1,0 +1,89 @@
+{
+  "lines": [
+    {
+      "original": "Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP.",
+      "generic_name": "morphine sulfate",
+      "strength": 10,
+      "strength_unit": "mg/5ml",
+      "dose": "5 ml",
+      "frequency": "when required",
+      "status": "stopped",
+      "replaces": null,
+      "note": "Reason: impact on renal function.",
+      "canonical_name": "morphine sulfate",
+      "canonical_text": "morphine sulfate 10 mg/5ml - 5 ml when required [stopped]"
+    },
+    {
+      "original": "Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).",
+      "generic_name": "oxycodone",
+      "strength": 5,
+      "strength_unit": "mg/5ml",
+      "dose": "2.5 ml",
+      "frequency": "every 4 hours when required",
+      "status": "started",
+      "replaces": "morphine sulfate",
+      "note": "renal.",
+      "canonical_name": "oxycodone",
+      "canonical_text": "oxycodone 5 mg/5ml - 2.5 ml every 4 hours when required [started]"
+    },
+    {
+      "original": "Paracetamol 500mg 2 tabs QDS",
+      "generic_name": "paracetamol",
+      "strength": 500,
+      "strength_unit": "mg",
+      "dose": "2 tablets",
+      "frequency": "four times daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "paracetamol",
+      "canonical_text": "paracetamol 500 mg - 2 tablets four times daily [active]"
+    },
+    {
+      "original": "Amlodipine 5mg OD",
+      "generic_name": "amlodipine",
+      "strength": 5,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "amlodipine",
+      "canonical_text": "amlodipine 5 mg - 1 tablet once daily [active]"
+    },
+    {
+      "original": "Laxido 1 sachet BD",
+      "generic_name": "laxido",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "1 sachet",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "macrogol",
+      "canonical_text": "macrogol - 1 sachet twice daily [active]"
+    },
+    {
+      "original": "Atorvastatin 20mg ON",
+      "generic_name": "atorvastatin",
+      "strength": 20,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "once nightly",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "atorvastatin",
+      "canonical_text": "atorvastatin 20 mg - 1 tablet once nightly [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 6257,
+    "mubit_request_id": "mreq_01a16cd608d779b19e052f16ccb72c83"
+  }
+}

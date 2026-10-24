@@ -1,0 +1,63 @@
+{
+  "lines": [
+    {
+      "original": "Brivaracetam 10mg/ml soln   10 ml   BD  (started 26/07 after NHS 111 call)",
+      "generic_name": "brivaracetam",
+      "strength": 10,
+      "strength_unit": "mg/ml",
+      "dose": "10 ml",
+      "frequency": "twice daily",
+      "status": "started",
+      "replaces": null,
+      "note": "started 26/07 after NHS 111 call",
+      "canonical_name": "brivaracetam",
+      "canonical_text": "brivaracetam 10 mg/ml - 10 ml twice daily [started]"
+    },
+    {
+      "original": "Omeprazole 20mg             1 cap   OD",
+      "generic_name": "omeprazole",
+      "strength": 20,
+      "strength_unit": "mg",
+      "dose": "1 cap",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "omeprazole",
+      "canonical_text": "omeprazole 20 mg - 1 cap once daily [active]"
+    },
+    {
+      "original": "Macrogol                    1 sach  OD",
+      "generic_name": "macrogol",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "1 sach",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "macrogol",
+      "canonical_text": "macrogol - 1 sach once daily [active]"
+    },
+    {
+      "original": "Vit D3 800iu                1 tab   OD",
+      "generic_name": "colecalciferol",
+      "strength": 800,
+      "strength_unit": "units",
+      "dose": "1 tab",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "colecalciferol",
+      "canonical_text": "colecalciferol 800 units - 1 tab once daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 7154,
+    "mubit_request_id": "mreq_01a16cd69eb778d2afaedc0422ee89df"
+  }
+}

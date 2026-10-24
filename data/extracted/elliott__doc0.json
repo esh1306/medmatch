@@ -1,0 +1,76 @@
+{
+  "lines": [
+    {
+      "original": "Oramorph 10mg/5ml oral solution - 2.5ml every 4 hours when required for pain",
+      "generic_name": "morphine sulfate",
+      "strength": 10,
+      "strength_unit": "mg/5ml",
+      "dose": "2.5 ml",
+      "frequency": "every 4 hours when required",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "morphine sulfate",
+      "canonical_text": "morphine sulfate 10 mg/5ml - 2.5 ml every 4 hours when required [active]"
+    },
+    {
+      "original": "Paracetamol 500mg tablets - 2 four times a day",
+      "generic_name": "paracetamol",
+      "strength": 500,
+      "strength_unit": "mg",
+      "dose": "2 tablets",
+      "frequency": "four times daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "paracetamol",
+      "canonical_text": "paracetamol 500 mg - 2 tablets four times daily [active]"
+    },
+    {
+      "original": "Amlodipine 5mg - 1 daily",
+      "generic_name": "amlodipine",
+      "strength": 5,
+      "strength_unit": "mg",
+      "dose": "1",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "amlodipine",
+      "canonical_text": "amlodipine 5 mg - 1 once daily [active]"
+    },
+    {
+      "original": "Laxido sachets - 1 twice daily",
+      "generic_name": "macrogol",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "1",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "macrogol",
+      "canonical_text": "macrogol - 1 twice daily [active]"
+    },
+    {
+      "original": "Atorvastatin 20mg - 1 at night",
+      "generic_name": "atorvastatin",
+      "strength": 20,
+      "strength_unit": "mg",
+      "dose": "1",
+      "frequency": "at night",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "atorvastatin",
+      "canonical_text": "atorvastatin 20 mg - 1 at night [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 4597,
+    "mubit_request_id": "mreq_01a16cd609377683bb38503b1eda4ccc"
+  }
+}

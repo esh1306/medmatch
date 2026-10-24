@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Acetaminophen 500 mg - 2 tabs - QDS",
+      "generic_name": "paracetamol",
+      "strength": 500,
+      "strength_unit": "mg",
+      "dose": "2 tablets",
+      "frequency": "four times daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "paracetamol",
+      "canonical_text": "paracetamol 500 mg - 2 tablets four times daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1593,
+    "mubit_request_id": "mreq_01a16cd6fbd770b0b23ff8e0d9144cbe"
+  }
+}

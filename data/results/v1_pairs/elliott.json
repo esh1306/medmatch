@@ -1,0 +1,189 @@
+{
+  "case": "elliott",
+  "run_at": "2026-10-24 08:16:58 BST",
+  "policy": "A care medication record must match the most recent prescriber instruction: discontinued medicines must not be given, replacements must replace not add, doses must match, and every prescribed medicine must be on the administration chart.",
+  "claim": "The care record is consistent with the prescriber instruction.",
+  "threshold": 0.4,
+  "extraction": {
+    "mode": "live",
+    "model": "gpt-4o-mini",
+    "latency_ms": 6626,
+    "gateway": "https://api.mubit.ai/openai/v1"
+  },
+  "rows": [
+    {
+      "name": "Paracetamol",
+      "prescriber_instruction": "Paracetamol 500mg 2 tabs QDS",
+      "care_record_line": "Paracetamol 500mg tab 2 QDS Active",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.33410943351103223,
+          "violation": 0.0729341894651155,
+          "insufficient_information": 0.570077012049007,
+          "inconsistent_context": 0.022879364974845443
+        },
+        "violation": 0.0729341894651155,
+        "model_ms": 1016.6770899995754,
+        "wall_ms": 1619,
+        "http": 200,
+        "evidence": "Prescriber record: Paracetamol: Paracetamol 500mg 2 tabs QDS\nCare record: Paracetamol: Paracetamol 500mg tab 2 QDS Active"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Oxycodone",
+      "prescriber_instruction": "STARTED: Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).",
+      "care_record_line": "Oxycodone 5mg/5ml liquid 2.5ml 4hrly PRN Active NEW - added 20/12 (additional)",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.14574888981504688,
+          "violation": 0.09007417958532775,
+          "insufficient_information": 0.7414331755211089,
+          "inconsistent_context": 0.022743755078516437
+        },
+        "violation": 0.09007417958532775,
+        "model_ms": 1032.328203000361,
+        "wall_ms": 2644,
+        "http": 200,
+        "evidence": "Prescriber record: Oxycodone: STARTED: Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).\nCare record: Oxycodone: Oxycodone 5mg/5ml liquid 2.5ml 4hrly PRN Active NEW - added 20/12 (additional)"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Atorvastatin",
+      "prescriber_instruction": "Atorvastatin 20mg ON",
+      "care_record_line": "Atorvastatin 20mg 1 night Active",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.40644658847247306,
+          "violation": 0.06454930259411525,
+          "insufficient_information": 0.5101206046613832,
+          "inconsistent_context": 0.018883504272028333
+        },
+        "violation": 0.06454930259411525,
+        "model_ms": 1015.0036390004971,
+        "wall_ms": 3662,
+        "http": 200,
+        "evidence": "Prescriber record: Atorvastatin: Atorvastatin 20mg ON\nCare record: Atorvastatin: Atorvastatin 20mg 1 night Active"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Oramorph",
+      "prescriber_instruction": "STOPPED: Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP. Reason: impact on renal function.",
+      "care_record_line": "Oramorph 10mg/5ml 2.5ml 4hrly PRN Active given 18/12, 19/12, 20/12",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "violation",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.07037050064057615,
+          "violation": 0.5720991899694385,
+          "insufficient_information": 0.33087267177088925,
+          "inconsistent_context": 0.026657637619096057
+        },
+        "violation": 0.5720991899694385,
+        "model_ms": 1034.690443000727,
+        "wall_ms": 4700,
+        "http": 200,
+        "evidence": "Prescriber record: Oramorph: STOPPED: Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP. Reason: impact on renal function.\nCare record: Oramorph: Oramorph 10mg/5ml 2.5ml 4hrly PRN Active given 18/12, 19/12, 20/12"
+      },
+      "rule": null,
+      "sapling_flag": true,
+      "flag": true
+    },
+    {
+      "name": "Laxido",
+      "prescriber_instruction": "Laxido 1 sachet BD",
+      "care_record_line": "Laxido sachet 1 BD Active",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.3165538723645208,
+          "violation": 0.08767857068345793,
+          "insufficient_information": 0.5734718359098205,
+          "inconsistent_context": 0.02229572104220088
+        },
+        "violation": 0.08767857068345793,
+        "model_ms": 1001.0155489981116,
+        "wall_ms": 5709,
+        "http": 200,
+        "evidence": "Prescriber record: Laxido: Laxido 1 sachet BD\nCare record: Laxido: Laxido sachet 1 BD Active"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Amlodipine",
+      "prescriber_instruction": "Amlodipine 5mg OD",
+      "care_record_line": "Amlodipine 5mg tab 1 OD Active",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.45602420922715514,
+          "violation": 0.06147366085336177,
+          "insufficient_information": 0.46587167149693365,
+          "inconsistent_context": 0.016630458422549486
+        },
+        "violation": 0.06147366085336177,
+        "model_ms": 1020.7537089991092,
+        "wall_ms": 6733,
+        "http": 200,
+        "evidence": "Prescriber record: Amlodipine: Amlodipine 5mg OD\nCare record: Amlodipine: Amlodipine 5mg tab 1 OD Active"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    }
+  ]
+}

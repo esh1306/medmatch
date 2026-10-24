@@ -1,0 +1,89 @@
+{
+  "lines": [
+    {
+      "original": "Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]",
+      "generic_name": "sodium valproate",
+      "strength": 200,
+      "strength_unit": "mg/5ml",
+      "dose": "10 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "sodium valproate",
+      "canonical_text": "sodium valproate 200 mg/5ml - 10 ml twice daily [active]"
+    },
+    {
+      "original": "Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]",
+      "generic_name": "levetiracetam",
+      "strength": 100,
+      "strength_unit": "mg/ml",
+      "dose": "7.5 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "levetiracetam",
+      "canonical_text": "levetiracetam 100 mg/ml - 7.5 ml twice daily [active]"
+    },
+    {
+      "original": "Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **",
+      "generic_name": "phenobarbital",
+      "strength": 30,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "twice daily",
+      "status": "stopped",
+      "replaces": null,
+      "note": "DISCONTINUED 08/04/2025 by GP",
+      "canonical_name": "phenobarbital",
+      "canonical_text": "phenobarbital 30 mg - 1 tablet twice daily [stopped]"
+    },
+    {
+      "original": "Lansoprazole 15mg orodisp tab - 1 OD  [repeat]",
+      "generic_name": "lansoprazole",
+      "strength": 15,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "lansoprazole",
+      "canonical_text": "lansoprazole 15 mg - 1 tablet once daily [active]"
+    },
+    {
+      "original": "Senna 7.5mg tabs - 2 ON prn  [repeat]",
+      "generic_name": "senna",
+      "strength": 7.5,
+      "strength_unit": "mg",
+      "dose": "2 tablets",
+      "frequency": "when required",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "senna",
+      "canonical_text": "senna 7.5 mg - 2 tablets when required [active]"
+    },
+    {
+      "original": "Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]",
+      "generic_name": "amoxicillin",
+      "strength": 125,
+      "strength_unit": "mg/5ml",
+      "dose": "20 ml",
+      "frequency": "three times daily",
+      "status": "started",
+      "replaces": null,
+      "note": "started 07/04/25",
+      "canonical_name": "amoxicillin",
+      "canonical_text": "amoxicillin 125 mg/5ml - 20 ml three times daily [started]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 6294,
+    "mubit_request_id": "mreq_01a16cd5abef7a4192ae76aa97febc3c"
+  }
+}

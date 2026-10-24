@@ -23,7 +23,10 @@ def evidence(m):
             f"Care record: {m['name']}: {m['care_record_line']}")
 
 def sapling(m):
-    payload = {"inputs": {"policy": POLICY, "evidence": evidence(m), "claim": CLAIM}}
+    return sapling_raw(evidence(m))
+
+def sapling_raw(ev):
+    payload = {"inputs": {"policy": POLICY, "evidence": ev, "claim": CLAIM}}
     t = time.time()
     try:
         r = requests.post(SAPLING_URL, json=payload, timeout=120)

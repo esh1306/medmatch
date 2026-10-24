@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Brivaracetam 10mg/ml oral solution 4ml twice daily",
+      "generic_name": "brivaracetam",
+      "strength": 10,
+      "strength_unit": "mg/ml",
+      "dose": "4 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "brivaracetam",
+      "canonical_text": "brivaracetam 10 mg/ml - 4 ml twice daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1461,
+    "mubit_request_id": "mreq_01a16cd714e775d3a65e129a9387e843"
+  }
+}

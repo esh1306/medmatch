@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Calcium carbonate + colecalciferol chewable tab - 1 - twice daily",
+      "generic_name": "calcium carbonate + colecalciferol",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "1 tablet",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "calcium carbonate + colecalciferol",
+      "canonical_text": "calcium carbonate + colecalciferol - 1 tablet twice daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 2924,
+    "mubit_request_id": "mreq_01a16cd700a671439bf77f0e692786e4"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "lines": [
+    {
+      "original": "Paracetamol 500mg tab             2 QDS                 Active",
+      "generic_name": "paracetamol",
+      "strength": 500,
+      "strength_unit": "mg",
+      "dose": "2 tablets",
+      "frequency": "four times daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "paracetamol",
+      "canonical_text": "paracetamol 500 mg - 2 tablets four times daily [active]"
+    },
+    {
+      "original": "Amlodipine 5mg tab                1 OD                  Active",
+      "generic_name": "amlodipine",
+      "strength": 5,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "amlodipine",
+      "canonical_text": "amlodipine 5 mg - 1 tablet once daily [active]"
+    },
+    {
+      "original": "Laxido sachet                     1 BD                  Active",
+      "generic_name": "macrogol",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "1 sachet",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "macrogol",
+      "canonical_text": "macrogol - 1 sachet twice daily [active]"
+    },
+    {
+      "original": "Atorvastatin 20mg                 1 night               Active",
+      "generic_name": "atorvastatin",
+      "strength": 20,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "at night",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "atorvastatin",
+      "canonical_text": "atorvastatin 20 mg - 1 tablet at night [active]"
+    },
+    {
+      "original": "Oramorph 10mg/5ml                 2.5ml 4hrly PRN       Active   given 18/12, 19/12, 20/12",
+      "generic_name": "morphine sulfate",
+      "strength": 10,
+      "strength_unit": "mg/ml",
+      "dose": "2.5 ml",
+      "frequency": "every 4 hours when required",
+      "status": "active",
+      "replaces": null,
+      "note": "given 18/12, 19/12, 20/12",
+      "canonical_name": "morphine sulfate",
+      "canonical_text": "morphine sulfate 10 mg/ml - 2.5 ml every 4 hours when required [active]"
+    },
+    {
+      "original": "Oxycodone 5mg/5ml liquid          2.5ml 4hrly PRN       Active   NEW - added 20/12 (additional)",
+      "generic_name": "oxycodone",
+      "strength": 5,
+      "strength_unit": "mg/ml",
+      "dose": "2.5 ml",
+      "frequency": "every 4 hours when required",
+      "status": "active",
+      "replaces": null,
+      "note": "NEW - added 20/12 (additional)",
+      "canonical_name": "oxycodone",
+      "canonical_text": "oxycodone 5 mg/ml - 2.5 ml every 4 hours when required [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 8215,
+    "mubit_request_id": "mreq_01a16cd608c879e0b314775cd32a06a0"
+  }
+}

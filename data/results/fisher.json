@@ -1,0 +1,708 @@
+{
+  "case": "fisher",
+  "run_at": "2026-10-24 08:35:24 BST",
+  "policy": "A care medication record must match the most recent prescriber instruction: discontinued medicines must not be given, replacements must replace not add, doses must match, and every prescribed medicine must be on the administration chart.",
+  "claim": "The care record is consistent with the prescriber instruction.",
+  "threshold": 0.4,
+  "normalisation": [
+    {
+      "doc": "GP medicines list (existing)",
+      "mode": "live",
+      "gateway": "https://api.mubit.ai/openai/v1",
+      "model": "gpt-4o-mini",
+      "latency_ms": 6294,
+      "mubit_request_id": "mreq_01a16cd5abef7a4192ae76aa97febc3c"
+    },
+    {
+      "doc": "Community team handwritten MAR",
+      "mode": "live",
+      "gateway": "https://api.mubit.ai/openai/v1",
+      "model": "gpt-4o-mini",
+      "latency_ms": 6360,
+      "mubit_request_id": "mreq_01a16cd5ac3b72d1a764da0ac3125b2d"
+    },
+    {
+      "doc": "Care agency eMAR",
+      "mode": "live",
+      "gateway": "https://api.mubit.ai/openai/v1",
+      "model": "gpt-4o-mini",
+      "latency_ms": 4804,
+      "mubit_request_id": "mreq_01a16cd5abe075b096ff75cf0e306ab3"
+    }
+  ],
+  "medicines": [
+    {
+      "name": "sodium valproate",
+      "prescriber_history": [
+        [
+          "GP medicines list (existing)",
+          "on existing list"
+        ]
+      ],
+      "currently_prescribed": true,
+      "comparisons": [
+        {
+          "name": "sodium valproate",
+          "doc": "Community team handwritten MAR",
+          "prescriber_line": "sodium valproate: CURRENT PRESCRIPTION sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]\")",
+          "care_line": "sodium valproate: sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Na valproate liquid 200/5     | 10 ml PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")",
+          "rule": null,
+          "evidence": "Prescriber record: sodium valproate: CURRENT PRESCRIPTION sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]\")\nCare record: sodium valproate: sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Na valproate liquid 200/5     | 10 ml PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.35269437978376433,
+              "violation": 0.06470720075220662,
+              "insufficient_information": 0.5621792191736826,
+              "inconsistent_context": 0.02041920029034655
+            },
+            "violation": 0.06470720075220662,
+            "model_ms": 1047.9070389992557,
+            "wall_ms": 4819,
+            "http": 200,
+            "evidence": "Prescriber record: sodium valproate: CURRENT PRESCRIPTION sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]\")\nCare record: sodium valproate: sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Na valproate liquid 200/5     | 10 ml PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")"
+          },
+          "sapling_flag": false,
+          "flag": false
+        },
+        {
+          "name": "sodium valproate",
+          "doc": "Care agency eMAR",
+          "prescriber_line": "sodium valproate: CURRENT PRESCRIPTION sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]\")",
+          "care_line": "sodium valproate: NOT ON CHART",
+          "rule": "Missing: prescribed but not on this chart",
+          "evidence": "Prescriber record: sodium valproate: CURRENT PRESCRIPTION sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]\")\nCare record: sodium valproate: NOT ON CHART",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "violation",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.025840543853323225,
+              "violation": 0.8654486354010179,
+              "insufficient_information": 0.1039247838495264,
+              "inconsistent_context": 0.004786036896132489
+            },
+            "violation": 0.8654486354010179,
+            "model_ms": 1030.723420000868,
+            "wall_ms": 6902,
+            "http": 200,
+            "evidence": "Prescriber record: sodium valproate: CURRENT PRESCRIPTION sodium valproate 200 mg/5ml - 10 ml twice daily [active] (original text: \"Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]\")\nCare record: sodium valproate: NOT ON CHART"
+          },
+          "sapling_flag": true,
+          "flag": true
+        }
+      ],
+      "flag": true,
+      "max_violation": 0.8654486354010179
+    },
+    {
+      "name": "phenobarbital",
+      "prescriber_history": [
+        [
+          "GP medicines list (existing)",
+          "stopped"
+        ]
+      ],
+      "currently_prescribed": false,
+      "comparisons": [
+        {
+          "name": "phenobarbital",
+          "doc": "Community team handwritten MAR",
+          "prescriber_line": "phenobarbital: NOT CURRENTLY PRESCRIBED (stopped). Last prescriber line: phenobarbital 30 mg - 1 tablet twice daily [stopped] (original text: \"Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **\"; note: DISCONTINUED 08/04/2025 by GP)",
+          "care_line": "phenobarbital: phenobarbital 30 mg - 1 tab twice daily [active] (original text: \"Phenobarbital 30mg tab        | 1 tab PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713  (from blister? box?)\")",
+          "rule": "Extra: on this chart as active but not currently prescribed (stopped)",
+          "evidence": "Prescriber record: phenobarbital: NOT CURRENTLY PRESCRIBED (stopped). Last prescriber line: phenobarbital 30 mg - 1 tablet twice daily [stopped] (original text: \"Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **\"; note: DISCONTINUED 08/04/2025 by GP)\nCare record: phenobarbital: phenobarbital 30 mg - 1 tab twice daily [active] (original text: \"Phenobarbital 30mg tab        | 1 tab PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713  (from blister? box?)\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "violation",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.061241073823503606,
+              "violation": 0.6094607291475802,
+              "insufficient_information": 0.15343972956509833,
+              "inconsistent_context": 0.17585846746381786
+            },
+            "violation": 0.6094607291475802,
+            "model_ms": 1065.486987998156,
+            "wall_ms": 2705,
+            "http": 200,
+            "evidence": "Prescriber record: phenobarbital: NOT CURRENTLY PRESCRIBED (stopped). Last prescriber line: phenobarbital 30 mg - 1 tablet twice daily [stopped] (original text: \"Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **\"; note: DISCONTINUED 08/04/2025 by GP)\nCare record: phenobarbital: phenobarbital 30 mg - 1 tab twice daily [active] (original text: \"Phenobarbital 30mg tab        | 1 tab PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713  (from blister? box?)\")"
+          },
+          "sapling_flag": true,
+          "flag": true
+        },
+        {
+          "name": "phenobarbital",
+          "doc": "Care agency eMAR",
+          "prescriber_line": "phenobarbital: NOT CURRENTLY PRESCRIBED (stopped). Last prescriber line: phenobarbital 30 mg - 1 tablet twice daily [stopped] (original text: \"Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **\"; note: DISCONTINUED 08/04/2025 by GP)",
+          "care_line": "phenobarbital: NOT ON CHART",
+          "rule": null,
+          "evidence": "Prescriber record: phenobarbital: NOT CURRENTLY PRESCRIBED (stopped). Last prescriber line: phenobarbital 30 mg - 1 tablet twice daily [stopped] (original text: \"Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **\"; note: DISCONTINUED 08/04/2025 by GP)\nCare record: phenobarbital: NOT ON CHART",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.12276957624571785,
+              "violation": 0.1950203729687965,
+              "insufficient_information": 0.6567244866242419,
+              "inconsistent_context": 0.0254855641612436
+            },
+            "violation": 0.1950203729687965,
+            "model_ms": 1048.5487710029702,
+            "wall_ms": 9011,
+            "http": 200,
+            "evidence": "Prescriber record: phenobarbital: NOT CURRENTLY PRESCRIBED (stopped). Last prescriber line: phenobarbital 30 mg - 1 tablet twice daily [stopped] (original text: \"Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **\"; note: DISCONTINUED 08/04/2025 by GP)\nCare record: phenobarbital: NOT ON CHART"
+          },
+          "sapling_flag": false,
+          "flag": false
+        }
+      ],
+      "flag": true,
+      "max_violation": 0.6094607291475802
+    },
+    {
+      "name": "senna",
+      "prescriber_history": [
+        [
+          "GP medicines list (existing)",
+          "on existing list"
+        ]
+      ],
+      "currently_prescribed": true,
+      "comparisons": [
+        {
+          "name": "senna",
+          "doc": "Community team handwritten MAR",
+          "prescriber_line": "senna: CURRENT PRESCRIPTION senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg tabs - 2 ON prn  [repeat]\")",
+          "care_line": "senna: senna - 2 tabs at night when required [withheld] (original text: \"Senna                         | 2 tabs PO      | night PRN  | -\")",
+          "rule": null,
+          "evidence": "Prescriber record: senna: CURRENT PRESCRIPTION senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg tabs - 2 ON prn  [repeat]\")\nCare record: senna: senna - 2 tabs at night when required [withheld] (original text: \"Senna                         | 2 tabs PO      | night PRN  | -\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.09577022605425983,
+              "violation": 0.29357953048680213,
+              "insufficient_information": 0.570501848845717,
+              "inconsistent_context": 0.040148394613221006
+            },
+            "violation": 0.29357953048680213,
+            "model_ms": 1040.268835000461,
+            "wall_ms": 8413,
+            "http": 200,
+            "evidence": "Prescriber record: senna: CURRENT PRESCRIPTION senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg tabs - 2 ON prn  [repeat]\")\nCare record: senna: senna - 2 tabs at night when required [withheld] (original text: \"Senna                         | 2 tabs PO      | night PRN  | -\")"
+          },
+          "sapling_flag": false,
+          "flag": false
+        },
+        {
+          "name": "senna",
+          "doc": "Care agency eMAR",
+          "prescriber_line": "senna: CURRENT PRESCRIPTION senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg tabs - 2 ON prn  [repeat]\")",
+          "care_line": "senna: senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg                        2 tabs   Bed PRN\")",
+          "rule": null,
+          "evidence": "Prescriber record: senna: CURRENT PRESCRIPTION senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg tabs - 2 ON prn  [repeat]\")\nCare record: senna: senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg                        2 tabs   Bed PRN\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.38476804935430514,
+              "violation": 0.06217436446690773,
+              "insufficient_information": 0.5321076256661093,
+              "inconsistent_context": 0.020949960512677945
+            },
+            "violation": 0.06217436446690773,
+            "model_ms": 1034.923348997836,
+            "wall_ms": 8386,
+            "http": 200,
+            "evidence": "Prescriber record: senna: CURRENT PRESCRIPTION senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg tabs - 2 ON prn  [repeat]\")\nCare record: senna: senna 7.5 mg - 2 tablets when required [active] (original text: \"Senna 7.5mg                        2 tabs   Bed PRN\")"
+          },
+          "sapling_flag": false,
+          "flag": false
+        }
+      ],
+      "flag": false,
+      "max_violation": 0.29357953048680213
+    },
+    {
+      "name": "levetiracetam",
+      "prescriber_history": [
+        [
+          "GP medicines list (existing)",
+          "on existing list"
+        ]
+      ],
+      "currently_prescribed": true,
+      "comparisons": [
+        {
+          "name": "levetiracetam",
+          "doc": "Community team handwritten MAR",
+          "prescriber_line": "levetiracetam: CURRENT PRESCRIPTION levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]\")",
+          "care_line": "levetiracetam: levetiracetam - 7.5 ml twice daily [active] (original text: \"Levetiracetam liquid          | 7.5 ml PO      | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")",
+          "rule": null,
+          "evidence": "Prescriber record: levetiracetam: CURRENT PRESCRIPTION levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]\")\nCare record: levetiracetam: levetiracetam - 7.5 ml twice daily [active] (original text: \"Levetiracetam liquid          | 7.5 ml PO      | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.3067632227537329,
+              "violation": 0.06763517963455751,
+              "insufficient_information": 0.6048267919350095,
+              "inconsistent_context": 0.020774805676700123
+            },
+            "violation": 0.06763517963455751,
+            "model_ms": 1055.9222909978416,
+            "wall_ms": 7962,
+            "http": 200,
+            "evidence": "Prescriber record: levetiracetam: CURRENT PRESCRIPTION levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]\")\nCare record: levetiracetam: levetiracetam - 7.5 ml twice daily [active] (original text: \"Levetiracetam liquid          | 7.5 ml PO      | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")"
+          },
+          "sapling_flag": false,
+          "flag": false
+        },
+        {
+          "name": "levetiracetam",
+          "doc": "Care agency eMAR",
+          "prescriber_line": "levetiracetam: CURRENT PRESCRIPTION levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]\")",
+          "care_line": "levetiracetam: levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea\")",
+          "rule": null,
+          "evidence": "Prescriber record: levetiracetam: CURRENT PRESCRIPTION levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]\")\nCare record: levetiracetam: levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.11880535629718032,
+              "violation": 0.184902934450375,
+              "insufficient_information": 0.6619886699455637,
+              "inconsistent_context": 0.034303039306881014
+            },
+            "violation": 0.184902934450375,
+            "model_ms": 1056.610424999235,
+            "wall_ms": 5867,
+            "http": 200,
+            "evidence": "Prescriber record: levetiracetam: CURRENT PRESCRIPTION levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]\")\nCare record: levetiracetam: levetiracetam 100 mg/ml - 7.5 ml twice daily [active] (original text: \"Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea\")"
+          },
+          "sapling_flag": false,
+          "flag": false
+        }
+      ],
+      "flag": false,
+      "max_violation": 0.184902934450375
+    },
+    {
+      "name": "lansoprazole",
+      "prescriber_history": [
+        [
+          "GP medicines list (existing)",
+          "on existing list"
+        ]
+      ],
+      "currently_prescribed": true,
+      "comparisons": [
+        {
+          "name": "lansoprazole",
+          "doc": "Community team handwritten MAR",
+          "prescriber_line": "lansoprazole: CURRENT PRESCRIPTION lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp tab - 1 OD  [repeat]\")",
+          "care_line": "lansoprazole: lansoprazole 15 mg - 1 once daily [active] (original text: \"Lansoprazole 15mg             | 1 PO           | 08:00      | \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")",
+          "rule": null,
+          "evidence": "Prescriber record: lansoprazole: CURRENT PRESCRIPTION lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp tab - 1 OD  [repeat]\")\nCare record: lansoprazole: lansoprazole 15 mg - 1 once daily [active] (original text: \"Lansoprazole 15mg             | 1 PO           | 08:00      | \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.4010363600370258,
+              "violation": 0.07211480309424508,
+              "insufficient_information": 0.5052616045651811,
+              "inconsistent_context": 0.021587232303548035
+            },
+            "violation": 0.07211480309424508,
+            "model_ms": 1052.584213000955,
+            "wall_ms": 3764,
+            "http": 200,
+            "evidence": "Prescriber record: lansoprazole: CURRENT PRESCRIPTION lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp tab - 1 OD  [repeat]\")\nCare record: lansoprazole: lansoprazole 15 mg - 1 once daily [active] (original text: \"Lansoprazole 15mg             | 1 PO           | 08:00      | \u2713\u2713\u2713\u2713\u2713\u2713\u2713\")"
+          },
+          "sapling_flag": false,
+          "flag": false
+        },
+        {
+          "name": "lansoprazole",
+          "doc": "Care agency eMAR",
+          "prescriber_line": "lansoprazole: CURRENT PRESCRIPTION lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp tab - 1 OD  [repeat]\")",
+          "care_line": "lansoprazole: lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp          1 tab    Morning\")",
+          "rule": null,
+          "evidence": "Prescriber record: lansoprazole: CURRENT PRESCRIPTION lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp tab - 1 OD  [repeat]\")\nCare record: lansoprazole: lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp          1 tab    Morning\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.42979479068129295,
+              "violation": 0.07144613296001995,
+              "insufficient_information": 0.47840179286780726,
+              "inconsistent_context": 0.020357283490879816
+            },
+            "violation": 0.07144613296001995,
+            "model_ms": 1046.1739980019047,
+            "wall_ms": 1634,
+            "http": 200,
+            "evidence": "Prescriber record: lansoprazole: CURRENT PRESCRIPTION lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp tab - 1 OD  [repeat]\")\nCare record: lansoprazole: lansoprazole 15 mg - 1 tablet once daily [active] (original text: \"Lansoprazole 15mg orodisp          1 tab    Morning\")"
+          },
+          "sapling_flag": false,
+          "flag": false
+        }
+      ],
+      "flag": false,
+      "max_violation": 0.07211480309424508
+    },
+    {
+      "name": "amoxicillin",
+      "prescriber_history": [
+        [
+          "GP medicines list (existing)",
+          "on existing list"
+        ]
+      ],
+      "currently_prescribed": true,
+      "comparisons": [
+        {
+          "name": "amoxicillin",
+          "doc": "Community team handwritten MAR",
+          "prescriber_line": "amoxicillin: CURRENT PRESCRIPTION amoxicillin 125 mg/5ml - 20 ml three times daily [started] (original text: \"Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]\"; note: started 07/04/25)",
+          "care_line": "amoxicillin: amoxicillin - 20 ml three times daily [active] (original text: \"Amoxicillin liquid            | 20 ml PO       | TDS        | \u2713\u2713\u2713\u2713\u2713 (course end?)\"; note: course end?)",
+          "rule": null,
+          "evidence": "Prescriber record: amoxicillin: CURRENT PRESCRIPTION amoxicillin 125 mg/5ml - 20 ml three times daily [started] (original text: \"Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]\"; note: started 07/04/25)\nCare record: amoxicillin: amoxicillin - 20 ml three times daily [active] (original text: \"Amoxicillin liquid            | 20 ml PO       | TDS        | \u2713\u2713\u2713\u2713\u2713 (course end?)\"; note: course end?)",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.3285184054987992,
+              "violation": 0.058633011978996195,
+              "insufficient_information": 0.5925413638470186,
+              "inconsistent_context": 0.020307218675185985
+            },
+            "violation": 0.058633011978996195,
+            "model_ms": 1052.9558809976152,
+            "wall_ms": 8376,
+            "http": 200,
+            "evidence": "Prescriber record: amoxicillin: CURRENT PRESCRIPTION amoxicillin 125 mg/5ml - 20 ml three times daily [started] (original text: \"Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]\"; note: started 07/04/25)\nCare record: amoxicillin: amoxicillin - 20 ml three times daily [active] (original text: \"Amoxicillin liquid            | 20 ml PO       | TDS        | \u2713\u2713\u2713\u2713\u2713 (course end?)\"; note: course end?)"
+          },
+          "sapling_flag": false,
+          "flag": false
+        },
+        {
+          "name": "amoxicillin",
+          "doc": "Care agency eMAR",
+          "prescriber_line": "amoxicillin: CURRENT PRESCRIPTION amoxicillin 125 mg/5ml - 20 ml three times daily [started] (original text: \"Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]\"; note: started 07/04/25)",
+          "care_line": "amoxicillin: amoxicillin 125 mg/5ml - 20 ml three times daily [active] (original text: \"Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea\")",
+          "rule": null,
+          "evidence": "Prescriber record: amoxicillin: CURRENT PRESCRIPTION amoxicillin 125 mg/5ml - 20 ml three times daily [started] (original text: \"Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]\"; note: started 07/04/25)\nCare record: amoxicillin: amoxicillin 125 mg/5ml - 20 ml three times daily [active] (original text: \"Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea\")",
+          "sapling": {
+            "status": "unsure",
+            "raw_label": "insufficient_information",
+            "prediction_set": [
+              "supported",
+              "violation",
+              "insufficient_information",
+              "inconsistent_context"
+            ],
+            "probabilities": {
+              "supported": 0.38208947693378714,
+              "violation": 0.05853454456967674,
+              "insufficient_information": 0.540051740214888,
+              "inconsistent_context": 0.019324238281648202
+            },
+            "violation": 0.05853454456967674,
+            "model_ms": 1053.4320539991313,
+            "wall_ms": 8384,
+            "http": 200,
+            "evidence": "Prescriber record: amoxicillin: CURRENT PRESCRIPTION amoxicillin 125 mg/5ml - 20 ml three times daily [started] (original text: \"Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]\"; note: started 07/04/25)\nCare record: amoxicillin: amoxicillin 125 mg/5ml - 20 ml three times daily [active] (original text: \"Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea\")"
+          },
+          "sapling_flag": false,
+          "flag": false
+        }
+      ],
+      "flag": false,
+      "max_violation": 0.058633011978996195
+    }
+  ],
+  "elapsed_s": 20.0,
+  "normalised_lines": {
+    "GP medicines list (existing)": [
+      {
+        "original": "Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]",
+        "generic_name": "sodium valproate",
+        "strength": 200,
+        "strength_unit": "mg/5ml",
+        "dose": "10 ml",
+        "frequency": "twice daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "sodium valproate",
+        "canonical_text": "sodium valproate 200 mg/5ml - 10 ml twice daily [active]"
+      },
+      {
+        "original": "Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]",
+        "generic_name": "levetiracetam",
+        "strength": 100,
+        "strength_unit": "mg/ml",
+        "dose": "7.5 ml",
+        "frequency": "twice daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "levetiracetam",
+        "canonical_text": "levetiracetam 100 mg/ml - 7.5 ml twice daily [active]"
+      },
+      {
+        "original": "Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **",
+        "generic_name": "phenobarbital",
+        "strength": 30,
+        "strength_unit": "mg",
+        "dose": "1 tablet",
+        "frequency": "twice daily",
+        "status": "stopped",
+        "replaces": null,
+        "note": "DISCONTINUED 08/04/2025 by GP",
+        "canonical_name": "phenobarbital",
+        "canonical_text": "phenobarbital 30 mg - 1 tablet twice daily [stopped]"
+      },
+      {
+        "original": "Lansoprazole 15mg orodisp tab - 1 OD  [repeat]",
+        "generic_name": "lansoprazole",
+        "strength": 15,
+        "strength_unit": "mg",
+        "dose": "1 tablet",
+        "frequency": "once daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "lansoprazole",
+        "canonical_text": "lansoprazole 15 mg - 1 tablet once daily [active]"
+      },
+      {
+        "original": "Senna 7.5mg tabs - 2 ON prn  [repeat]",
+        "generic_name": "senna",
+        "strength": 7.5,
+        "strength_unit": "mg",
+        "dose": "2 tablets",
+        "frequency": "when required",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "senna",
+        "canonical_text": "senna 7.5 mg - 2 tablets when required [active]"
+      },
+      {
+        "original": "Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]",
+        "generic_name": "amoxicillin",
+        "strength": 125,
+        "strength_unit": "mg/5ml",
+        "dose": "20 ml",
+        "frequency": "three times daily",
+        "status": "started",
+        "replaces": null,
+        "note": "started 07/04/25",
+        "canonical_name": "amoxicillin",
+        "canonical_text": "amoxicillin 125 mg/5ml - 20 ml three times daily [started]"
+      }
+    ],
+    "Community team handwritten MAR": [
+      {
+        "original": "Na valproate liquid 200/5     | 10 ml PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+        "generic_name": "sodium valproate",
+        "strength": 200,
+        "strength_unit": "mg/5ml",
+        "dose": "10 ml",
+        "frequency": "twice daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "sodium valproate",
+        "canonical_text": "sodium valproate 200 mg/5ml - 10 ml twice daily [active]"
+      },
+      {
+        "original": "Levetiracetam liquid          | 7.5 ml PO      | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+        "generic_name": "levetiracetam",
+        "strength": null,
+        "strength_unit": "",
+        "dose": "7.5 ml",
+        "frequency": "twice daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "levetiracetam",
+        "canonical_text": "levetiracetam - 7.5 ml twice daily [active]"
+      },
+      {
+        "original": "Phenobarbital 30mg tab        | 1 tab PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713  (from blister? box?)",
+        "generic_name": "phenobarbital",
+        "strength": 30,
+        "strength_unit": "mg",
+        "dose": "1 tab",
+        "frequency": "twice daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "phenobarbital",
+        "canonical_text": "phenobarbital 30 mg - 1 tab twice daily [active]"
+      },
+      {
+        "original": "Lansoprazole 15mg             | 1 PO           | 08:00      | \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+        "generic_name": "lansoprazole",
+        "strength": 15,
+        "strength_unit": "mg",
+        "dose": "1",
+        "frequency": "once daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "lansoprazole",
+        "canonical_text": "lansoprazole 15 mg - 1 once daily [active]"
+      },
+      {
+        "original": "Amoxicillin liquid            | 20 ml PO       | TDS        | \u2713\u2713\u2713\u2713\u2713 (course end?)",
+        "generic_name": "amoxicillin",
+        "strength": null,
+        "strength_unit": "",
+        "dose": "20 ml",
+        "frequency": "three times daily",
+        "status": "active",
+        "replaces": null,
+        "note": "course end?",
+        "canonical_name": "amoxicillin",
+        "canonical_text": "amoxicillin - 20 ml three times daily [active]"
+      },
+      {
+        "original": "Senna                         | 2 tabs PO      | night PRN  | -",
+        "generic_name": "senna",
+        "strength": null,
+        "strength_unit": "",
+        "dose": "2 tabs",
+        "frequency": "at night when required",
+        "status": "withheld",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "senna",
+        "canonical_text": "senna - 2 tabs at night when required [withheld]"
+      }
+    ],
+    "Care agency eMAR": [
+      {
+        "original": "Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea",
+        "generic_name": "levetiracetam",
+        "strength": 100,
+        "strength_unit": "mg/ml",
+        "dose": "7.5 ml",
+        "frequency": "twice daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "levetiracetam",
+        "canonical_text": "levetiracetam 100 mg/ml - 7.5 ml twice daily [active]"
+      },
+      {
+        "original": "Lansoprazole 15mg orodisp          1 tab    Morning",
+        "generic_name": "lansoprazole",
+        "strength": 15,
+        "strength_unit": "mg",
+        "dose": "1 tablet",
+        "frequency": "once daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "lansoprazole",
+        "canonical_text": "lansoprazole 15 mg - 1 tablet once daily [active]"
+      },
+      {
+        "original": "Senna 7.5mg                        2 tabs   Bed PRN",
+        "generic_name": "senna",
+        "strength": 7.5,
+        "strength_unit": "mg",
+        "dose": "2 tablets",
+        "frequency": "when required",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "senna",
+        "canonical_text": "senna 7.5 mg - 2 tablets when required [active]"
+      },
+      {
+        "original": "Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea",
+        "generic_name": "amoxicillin",
+        "strength": 125,
+        "strength_unit": "mg/5ml",
+        "dose": "20 ml",
+        "frequency": "three times daily",
+        "status": "active",
+        "replaces": null,
+        "note": null,
+        "canonical_name": "amoxicillin",
+        "canonical_text": "amoxicillin 125 mg/5ml - 20 ml three times daily [active]"
+      }
+    ]
+  }
+}

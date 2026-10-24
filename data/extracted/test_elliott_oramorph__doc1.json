@@ -1,0 +1,37 @@
+{
+  "lines": [
+    {
+      "original": "Oramorph 10mg/5ml 2.5ml 4hrly PRN Active",
+      "generic_name": "morphine sulfate",
+      "strength": 10,
+      "strength_unit": "mg/5ml",
+      "dose": "2.5 ml",
+      "frequency": "every 4 hours when required",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "morphine sulfate",
+      "canonical_text": "morphine sulfate 10 mg/5ml - 2.5 ml every 4 hours when required [active]"
+    },
+    {
+      "original": "Oxycodone 5mg/5ml 2.5ml 4hrly PRN Active - NEW additional",
+      "generic_name": "oxycodone",
+      "strength": 5,
+      "strength_unit": "mg/5ml",
+      "dose": "2.5 ml",
+      "frequency": "every 4 hours when required",
+      "status": "active",
+      "replaces": null,
+      "note": "NEW additional",
+      "canonical_name": "oxycodone",
+      "canonical_text": "oxycodone 5 mg/5ml - 2.5 ml every 4 hours when required [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 2680,
+    "mubit_request_id": "mreq_01a16cd7112f7e7296f11ac9fb33572b"
+  }
+}

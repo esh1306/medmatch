@@ -1,0 +1,37 @@
+{
+  "lines": [
+    {
+      "original": "Phenobarbital 30mg tablets - 1 BD - DISCONTINUED 08/04/2025 by GP",
+      "generic_name": "phenobarbital",
+      "strength": 30,
+      "strength_unit": "mg",
+      "dose": "1 tablet",
+      "frequency": "twice daily",
+      "status": "stopped",
+      "replaces": null,
+      "note": "DISCONTINUED 08/04/2025 by GP",
+      "canonical_name": "phenobarbital",
+      "canonical_text": "phenobarbital 30 mg - 1 tablet twice daily [stopped]"
+    },
+    {
+      "original": "Levetiracetam 100mg/ml 7.5ml BD",
+      "generic_name": "levetiracetam",
+      "strength": 100,
+      "strength_unit": "mg/ml",
+      "dose": "7.5 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "levetiracetam",
+      "canonical_text": "levetiracetam 100 mg/ml - 7.5 ml twice daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 2343,
+    "mubit_request_id": "mreq_01a16cd708ab7821b02e2380fb8a210b"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "lines": [
+    {
+      "original": "Oramorph 10mg/5ml - STOPPED (renal).",
+      "generic_name": "morphine sulfate",
+      "strength": 10,
+      "strength_unit": "mg/5ml",
+      "dose": "5 ml",
+      "frequency": "when required",
+      "status": "stopped",
+      "replaces": null,
+      "note": "(renal)",
+      "canonical_name": "morphine sulfate",
+      "canonical_text": "morphine sulfate 10 mg/5ml - 5 ml when required [stopped]"
+    },
+    {
+      "original": "Oxycodone 5mg/5ml 2.5ml 4-hourly PRN REPLACES Oramorph.",
+      "generic_name": "oxycodone",
+      "strength": 5,
+      "strength_unit": "mg/5ml",
+      "dose": "2.5 ml",
+      "frequency": "when required",
+      "status": "active",
+      "replaces": "morphine sulfate",
+      "note": null,
+      "canonical_name": "oxycodone",
+      "canonical_text": "oxycodone 5 mg/5ml - 2.5 ml when required [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 2475,
+    "mubit_request_id": "mreq_01a16cd710c873f0a313ba955b073c4a"
+  }
+}

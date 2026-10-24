@@ -1,0 +1,229 @@
+{
+  "run_at": "2026-10-24 08:36:46 BST",
+  "passed": 9,
+  "total": 9,
+  "results": [
+    {
+      "id": "vitd",
+      "expect_flag": false,
+      "flagged": false,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "colecalciferol",
+          "flag": false,
+          "violation": 0.09,
+          "rule": [],
+          "raw_label": [
+            "insufficient_information"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd6fbdd7de29eae38faf154ff2c",
+        "mreq_01a16cd6fc237531bf5e77203782ad82"
+      ]
+    },
+    {
+      "id": "paracetamol",
+      "expect_flag": false,
+      "flagged": false,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "paracetamol",
+          "flag": false,
+          "violation": 0.132,
+          "rule": [],
+          "raw_label": [
+            "insufficient_information"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd6fc707e4193f8ef24d26828b0",
+        "mreq_01a16cd6fbd770b0b23ff8e0d9144cbe"
+      ]
+    },
+    {
+      "id": "adcal",
+      "expect_flag": false,
+      "flagged": false,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "calcium carbonate + colecalciferol",
+          "flag": false,
+          "violation": 0.068,
+          "rule": [],
+          "raw_label": [
+            "insufficient_information"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd6fc2377b0a80461b435fe46ba",
+        "mreq_01a16cd700a671439bf77f0e692786e4"
+      ]
+    },
+    {
+      "id": "bd",
+      "expect_flag": false,
+      "flagged": false,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "amlodipine",
+          "flag": false,
+          "violation": 0.073,
+          "rule": [],
+          "raw_label": [
+            "insufficient_information"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd6fbe0763291beafa428095d71",
+        "mreq_01a16cd6fbd2771181b9e6c395e57e78"
+      ]
+    },
+    {
+      "id": "gram",
+      "expect_flag": false,
+      "flagged": false,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "paracetamol",
+          "flag": false,
+          "violation": 0.097,
+          "rule": [],
+          "raw_label": [
+            "insufficient_information"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd6fbda7111b0cfce0391a0691b",
+        "mreq_01a16cd6fc247372ab362ff75c1b3ebf"
+      ]
+    },
+    {
+      "id": "fisher_phenobarbital",
+      "expect_flag": true,
+      "flagged": true,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "phenobarbital",
+          "flag": true,
+          "violation": 0.756,
+          "rule": [
+            "Extra: on this chart as active but not currently prescribed (stopped)"
+          ],
+          "raw_label": [
+            "violation"
+          ]
+        },
+        {
+          "name": "levetiracetam",
+          "flag": false,
+          "violation": 0.068,
+          "rule": [],
+          "raw_label": [
+            "insufficient_information"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd708ab7821b02e2380fb8a210b",
+        "mreq_01a16cd7089e7d73964ca17038bd5360"
+      ]
+    },
+    {
+      "id": "fisher_valproate_missing",
+      "expect_flag": true,
+      "flagged": true,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "levetiracetam",
+          "flag": true,
+          "violation": 0.897,
+          "rule": [],
+          "raw_label": [
+            "violation"
+          ]
+        },
+        {
+          "name": "sodium valproate",
+          "flag": true,
+          "violation": 0.882,
+          "rule": [
+            "Missing: prescribed but not on this chart"
+          ],
+          "raw_label": [
+            "violation"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd70cb57890a059e8941e16a972",
+        "mreq_01a16cd70ce479a0ae3917a572c77d91"
+      ]
+    },
+    {
+      "id": "elliott_oramorph",
+      "expect_flag": true,
+      "flagged": true,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "morphine sulfate",
+          "flag": true,
+          "violation": 0.685,
+          "rule": [
+            "Extra: on this chart as active but not currently prescribed (stopped; replaced by oxycodone)"
+          ],
+          "raw_label": [
+            "violation"
+          ]
+        },
+        {
+          "name": "oxycodone",
+          "flag": false,
+          "violation": 0.079,
+          "rule": [],
+          "raw_label": [
+            "insufficient_information"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd710c873f0a313ba955b073c4a",
+        "mreq_01a16cd7112f7e7296f11ac9fb33572b"
+      ]
+    },
+    {
+      "id": "burgess_brivaracetam",
+      "expect_flag": true,
+      "flagged": true,
+      "pass": true,
+      "medicines": [
+        {
+          "name": "brivaracetam",
+          "flag": true,
+          "violation": 0.827,
+          "rule": [],
+          "raw_label": [
+            "violation"
+          ]
+        }
+      ],
+      "mubit_request_ids": [
+        "mreq_01a16cd714e775d3a65e129a9387e843",
+        "mreq_01a16cd715347c30a59a25f2482ee8c9"
+      ]
+    }
+  ]
+}

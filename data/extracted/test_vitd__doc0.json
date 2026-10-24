@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Cholecalciferol 800 units tablets - 1 once daily",
+      "generic_name": "colecalciferol",
+      "strength": 800,
+      "strength_unit": "units",
+      "dose": "1 tablet",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "colecalciferol",
+      "canonical_text": "colecalciferol 800 units - 1 tablet once daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1681,
+    "mubit_request_id": "mreq_01a16cd6fbdd7de29eae38faf154ff2c"
+  }
+}

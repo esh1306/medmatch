@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Vit D3 800iu - 1 tab - OD",
+      "generic_name": "colecalciferol",
+      "strength": 800,
+      "strength_unit": "units",
+      "dose": "1 tablet",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "colecalciferol",
+      "canonical_text": "colecalciferol 800 units - 1 tablet once daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1933,
+    "mubit_request_id": "mreq_01a16cd6fc237531bf5e77203782ad82"
+  }
+}

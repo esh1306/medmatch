@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Levetiracetam 100mg/ml oral soln 7.5ml Morning, Tea",
+      "generic_name": "levetiracetam",
+      "strength": 100,
+      "strength_unit": "mg/ml",
+      "dose": "7.5 ml",
+      "frequency": "once daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "levetiracetam",
+      "canonical_text": "levetiracetam 100 mg/ml - 7.5 ml once daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1725,
+    "mubit_request_id": "mreq_01a16cd70ce479a0ae3917a572c77d91"
+  }
+}

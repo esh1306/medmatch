@@ -13,59 +13,70 @@ Built at the Mubit x Night Shift hackathon (London, 24 Oct 2026) for the Banyan 
 - **The safety net is incomplete.** In August 2026, only **66%** of NHS Discharge Medicines Service claims were complete (16,783 of 25,328). https://www.nhsbsa.nhs.uk/prescription-data/dispensing-data/nhs-discharge-medicines-service
 - **HSSIB (14 Aug 2025)** found medication harm linked to "conflicting information in his patient records". https://www.hssib.org.uk/patient-safety-investigations/medication-related-harm/third-investigation-report/
 
-## How it works
+## How it works (v2: whole existing medicines list)
 
 ```
- prescriber record ─┐                         ┌─> Banyan Sapling (one call per medicine, run in parallel)
- (GP / discharge)   ├─> LLM via Mubit gateway ─┤     policy + both lines -> violation probability
- care chart (MAR) ──┘   (gpt-4o-mini, JSON:    │     red if violation >= 0.4
-                        name, prescriber_      └─> rule check in code (not Sapling): prescribed but
-                        instruction,                missing from the care chart -> red
-                        care_record_line)
-                                   ──> pharmacist worklist: red "Conflict, pharmacist review"
-                                       or grey "No conflict found (not verified)"
+ GP / prescriber FULL existing medicines list (base) ─┐
+ prescriber updates (discharge letter, neurology)  ───┼─> 1. NORMALISE every line of every document
+ every care chart (handwritten MAR, eMAR, ...)  ──────┘      LLM via Mubit gateway (gpt-4o-mini, JSON) -> generic name,
+                                                             strength, unit, dose, frequency, status, replaces
+                                                             + data/synonyms.json (brand->generic, Vit D3, iu->units,
+                                                               b.d./b.i.d.->twice daily, 1g->1000 mg)
+  2. CURRENT PRESCRIBED LIST (code): base, then updates applied: started / stopped / replaced / dose changed
+  3. EVERY medicine x EVERY care chart -> Banyan Sapling (F1): policy + "Prescriber record: <canonical line + original>"
+     + "Care record: <canonical line + original>" ; red if violation >= 0.4
+  4. RULE CHECK in code (labelled, not Sapling): missing from chart / extra (on chart, not currently prescribed) / duplicated
+  5. WORKLIST: one row per medicine, per-document status, red "Conflict, pharmacist review" or grey "No conflict found (not verified)"
 ```
 
-- **Sapling policy:** "A care medication record must match the most recent prescriber instruction: discontinued medicines must not be given, replacements must replace not add, doses must match, and every prescribed medicine must be on the administration chart."
-- **Sapling evidence:** the prescriber line, then the care-record line.
-- **Sapling claim:** "The care record is consistent with the prescriber instruction."
-- **Extraction:** the extraction was **live through the Mubit gateway** (`https://api.mubit.ai/openai/v1`, gpt-4o-mini) for every run in this repo. A deterministic fallback in `data/extracted/*.fallback.json` is used only if the gateway fails.
-- **Caching:** results are cached in `data/results/*.json` so the demo can be replayed without network calls.
+- Sapling endpoint: exactly the official quickstart HF endpoint `https://6adbee0669a00298cd4774c9.endpoints.huggingface.cloud` (no auth).
+- Policy: "A care medication record must match the most recent prescriber instruction: discontinued medicines must not be given, replacements must replace not add, doses must match, and every prescribed medicine must be on the administration chart." Claim: "The care record is consistent with the prescriber instruction."
+- Gateway: OpenAI SDK with `base_url="https://api.mubit.ai/openai/v1"` and the Mubit key as `api_key` (per docs.mubit.ai quickstart). Every call's `x-middleware-request-id` response header (`mreq_...`, Mubit's call ID) is stored in `data/results/*.json` and shown in the app as proof the call went through Mubit. Key is read from `/workspace/.secrets/mubit_key` at runtime, never printed, logged or committed.
+- Synonym table `data/synonyms.json`: small hand-compiled table, generic names per RxNorm/openFDA and NHS dm+d (links in file). Illustrative, not complete.
+- v1 (pairwise) cases/results kept in `data/cases/v1_pairs/`, `data/results/v1_pairs/` for comparison.
 
 ## Data
 
-All documents in `data/cases/` are **synthetic**. They were rebuilt only from facts the coroner stated, and each one carries its source report and link. The other medicines, any doses the coroner did not state, and the layout are made up for illustration. The matching medicines are deliberate controls. They are not real patient records. Note that the coroner said it was "far from clear" whether phenobarbital was actually given to Mr Fisher. The handwritten record says it was.
+All documents in `data/cases/` are **synthetic**, rebuilt only from coroner-stated facts, each labelled with its source report and link. Other medicines, unstated doses and layout are illustrative; matching medicines are deliberate controls. The Elliott GP pre-admission list is illustrative (the coroner states the Oramorph->oxycodone switch). The coroner said it was "far from clear" whether phenobarbital was actually given to Mr Fisher; the handwritten record says it was.
 
-## Test results (honest)
+## Results (honest)
 
-**Earlier framing tests:** 24 Sapling calls on PFD-derived pairs (`sapling_pfd_tests.csv`, kept outside this repo). None came back confident: every status was `unsure`. Under framing F1, true conflicts scored violation **0.50–0.87** and matching controls scored **0.07–0.12**. The weakest case was a dropped medicine (0.50), which is why the code rule check exists.
+**Earlier framing tests:** 24 Sapling calls, 0 confident (all `unsure`); F1 true conflicts 0.50-0.87 vs controls 0.07-0.12.
 
-**This build's run (24 Oct 2026, about 08:16 BST, live extraction, 21 medicine pairs, all statuses `unsure`):**
+**v1 (pairwise, before normalisation):** 4/4 real conflicts flagged, but a false positive: cholecalciferol 800 units vs "Vit D3 800iu" = 0.80.
 
-| Case | Real conflict | Violation | Flagged? | Other flags |
-|---|---|---|---|---|
-| Fisher step 1 (GP vs community chart) | Phenobarbital discontinued but still charted | 0.82 | Red | none. Controls 0.07–0.36 |
-| Fisher step 2 (community vs agency eMAR) | Valproate missing from eMAR | 0.88 | Red, by Sapling **and** the rule check | none. Controls 0.09–0.38 |
-| Elliott | Oramorph still active after replacement | 0.57 | Red | The oxycodone row itself scored 0.09, so the conflict surfaces only on the Oramorph row |
-| Burgess | Brivaracetam 4ml vs 10ml | 0.65 | Red | **False positive:** cholecalciferol 800 units vs "Vit D3 800iu" scored 0.80 |
+**v2 whole-list run (24 Oct 2026, ~08:35 BST, live normalisation via Mubit, 22 Sapling calls, all status `unsure`):**
 
-All 4 real conflicts were flagged. There was 1 false positive among 17 control pairs. The highest-scoring unflagged control was 0.38, close to the 0.4 threshold. Sapling latency was about 1.6–7 s per call when run in parallel.
+| Case | Documents | Flagged | Numbers |
+|---|---|---|---|
+| Fisher | GP list + community MAR + agency eMAR (12 calls) | sodium valproate, phenobarbital | Valproate vs agency eMAR 0.87 + rule "Missing"; phenobarbital vs community MAR 0.61 + rule "Extra (stopped)". All other pairs 0.06-0.29 |
+| Elliott | GP list + discharge letter + care eMAR (6 calls) | morphine sulfate (Oramorph) | 0.62 + rule "Extra (stopped; replaced by oxycodone)". Others 0.06-0.07 |
+| Burgess | neurology/GP list + care MAR (4 calls) | brivaracetam | 0.84 (4 ml vs 10 ml, Sapling only). Colecalciferol now 0.06 (was 0.80 in v1) |
+
+All 4 real conflicts flagged, 0 false positives across 18 control comparisons (highest control 0.29).
+
+**Live regression test (`tests/test_regression.py`, results in `tests/regression_results.json`): 9/9 passed.**
+Must NOT flag: Vit D3 vs cholecalciferol 0.09; acetaminophen vs paracetamol 0.13; Adcal-D3 vs calcium carbonate + colecalciferol 0.07; b.d. vs twice daily 0.07; 1g vs 1000mg 0.10.
+Must flag: Fisher phenobarbital 0.76 + rule; Fisher valproate missing 0.88 + rule; Elliott Oramorph 0.69-0.75 + rule; Burgess brivaracetam 0.83.
+Caveat: in the valproate-missing test, the matching levetiracetam line also scored 0.90 (a false positive inside a must-flag test).
 
 ## Limits
 
-- Sapling never returned a confident verdict. MedMatch ranks by the raw violation probability. Grey means "not flagged", **not** "safe".
-- Synonyms and unit spellings (Vit D3 vs cholecalciferol) can trigger false flags. A drug-name normaliser such as dm+d would help.
-- The demo was tested on 4 synthetic pairs only. It has no clinical validation and is not for clinical use.
-- In real life, a care home can see a GP record through GP Connect (HTML view) but cannot use the Summary Care Record. Integration is future work.
+- Sapling never returned a confident verdict; we rank by raw violation probability. Grey = not flagged, NOT safe.
+- Oxycodone's own row scores low (0.07); the Elliott conflict surfaces on the Oramorph row (Sapling + rule).
+- Sapling still produced a stray false positive in one test (levetiracetam 0.90 when another drug was missing from the same chart). Synonym table is small and hand-made; not dm+d-complete.
+- LLM normalisation can mis-read messy lines; the canonical and original text are both shown so a pharmacist can check.
+- Synthetic data only, 3 cases + 9 regression pairs. Not clinically validated. Not for clinical use.
+- Real access: care homes can view GP records via GP Connect (HTML); Summary Care Record not approved for care homes. Integration is future work.
 
 ## Run
 
 ```bash
-python3 -m venv --system-site-packages .venv && .venv/bin/pip install streamlit openai requests
-# Mubit key: put it in /workspace/.secrets/mubit_key (gitignored, read at runtime, never logged)
-.venv/bin/python extract.py   # live extraction via Mubit gateway (cached to data/extracted/*.live.json)
-.venv/bin/python judge.py     # Sapling judging, cached to data/results/
+python3 -m venv --system-site-packages .venv && .venv/bin/pip install streamlit openai requests playwright
+# Mubit key in /workspace/.secrets/mubit_key (gitignored; read at runtime, never logged)
+.venv/bin/python pipeline.py                 # live: normalise via Mubit + Sapling, caches data/results/*.json
+.venv/bin/python tests/test_regression.py    # live regression (synonyms must not flag, 4 conflicts must flag)
 .venv/bin/streamlit run app.py --server.port 8501
-.venv/bin/python shoot.py cache fisher_gp_vs_community   # Playwright screenshots
+.venv/bin/python shoot.py cache fisher elliott burgess   # Playwright screenshots
 ```
-In the app, choose a case and a mode (Live, or Replay from cache), then click **Check records**.
+In the app pick a case, choose Live or Replay from cache, click **Check records**.

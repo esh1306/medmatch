@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Adcal-D3 chewable tablets - 1 twice daily",
+      "generic_name": "calcium carbonate + colecalciferol",
+      "strength": null,
+      "strength_unit": "",
+      "dose": "1 tablet",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "calcium carbonate + colecalciferol",
+      "canonical_text": "calcium carbonate + colecalciferol - 1 tablet twice daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1571,
+    "mubit_request_id": "mreq_01a16cd6fc2377b0a80461b435fe46ba"
+  }
+}

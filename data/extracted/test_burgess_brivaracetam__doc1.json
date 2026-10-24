@@ -1,0 +1,24 @@
+{
+  "lines": [
+    {
+      "original": "Brivaracetam 10mg/ml soln 10ml BD",
+      "generic_name": "brivaracetam",
+      "strength": 10,
+      "strength_unit": "mg/ml",
+      "dose": "10 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "brivaracetam",
+      "canonical_text": "brivaracetam 10 mg/ml - 10 ml twice daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 1708,
+    "mubit_request_id": "mreq_01a16cd715347c30a59a25f2482ee8c9"
+  }
+}

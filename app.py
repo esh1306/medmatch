@@ -1,88 +1,74 @@
-import json, pathlib, time, html
+import json, pathlib, time, html, threading, queue
 import streamlit as st
-from extract import extract
-from judge import judge_stream, save, load, THRESHOLD, POLICY, CLAIM
-
+from pipeline import run, save, load
+from judge import THRESHOLD, POLICY, CLAIM
 ROOT = pathlib.Path(__file__).parent
 st.set_page_config(page_title="MedMatch", page_icon="💊", layout="wide")
-CASES = {json.loads(f.read_text())["id"]: json.loads(f.read_text()) for f in sorted((ROOT / "data/cases").glob("*.json"))}
-ORDER = ["fisher_gp_vs_community", "fisher_community_vs_agency", "elliott", "burgess"]
-
-st.markdown("""<style>
-.row{border-radius:8px;padding:10px 14px;margin:6px 0;border-left:8px solid}
+ORDER = ["fisher", "elliott", "burgess"]
+CASES = {k: json.loads((ROOT / f"data/cases/{k}.json").read_text()) for k in ORDER}
+st.markdown("""<style>.row{border-radius:8px;padding:10px 14px;margin:6px 0;border-left:8px solid}
 .red{background:#fdecea;border-color:#d93025}.grey{background:#f1f3f4;border-color:#9aa0a6}
-.bar{height:10px;background:#e0e0e0;border-radius:5px;overflow:hidden;margin:4px 0}
-.fill{height:10px}.small{font-size:0.82em;color:#444}.status{font-weight:700}
-</style>""", unsafe_allow_html=True)
-
+.bar{height:9px;background:#e0e0e0;border-radius:5px;overflow:hidden;margin:3px 0}.fill{height:9px}
+.small{font-size:0.82em;color:#333}.cell{border-top:1px dashed #ccc;margin-top:6px;padding-top:4px}</style>""", unsafe_allow_html=True)
 st.title("💊 MedMatch")
-st.caption("Catches medicine mismatches between the prescriber's record and the care home / agency medicines chart, "
-           "and puts contradictions on a pharmacist's worklist. Extraction: LLM via Mubit gateway. Judging: Banyan Sapling.")
-
+st.caption("Checks a patient's WHOLE existing medicines list against every other document (discharge letters, care charts): started, stopped, "
+           "replaced, dose changed, missing, extra, duplicated. Normalisation: LLM via Mubit gateway + synonym table. Judging: Banyan Sapling, one call per medicine per chart.")
 with st.sidebar:
     cid = st.selectbox("Case", ORDER, format_func=lambda k: CASES[k]["title"])
-    mode = st.radio("Mode", ["Live (Mubit gateway + Sapling)", "Replay from cache"], index=1)
-    live = mode.startswith("Live")
-    st.markdown(f"**Flag rule:** Sapling violation ≥ {THRESHOLD}, or the code rule check (prescribed but missing from chart).")
-    with st.expander("Sapling policy and claim"):
-        st.write(POLICY); st.write("Claim: " + CLAIM)
-
+    live = st.radio("Mode", ["Live (Mubit gateway + Sapling)", "Replay from cache"], index=1).startswith("Live")
+    st.markdown(f"**Red if** Sapling violation ≥ {THRESHOLD}, or the code rule check fires (missing / extra / duplicated).")
+    with st.expander("Sapling policy and claim"): st.write(POLICY); st.write("Claim: " + CLAIM)
 case = CASES[cid]
-st.subheader(case["title"])
-st.markdown(f"**Coroner-stated fact:** {case['coroner_fact']}")
-c1, c2 = st.columns(2)
-with c1:
-    st.markdown(f"**📄 {case['left_label']}**"); st.code(case["left"], language=None, wrap_lines=True)
-with c2:
-    st.markdown(f"**📋 {case['right_label']}**"); st.code(case["right"], language=None, wrap_lines=True)
+st.subheader(case["title"]); st.markdown(f"**Coroner-stated facts:** {case['coroner_fact']}")
+cols = st.columns(len(case["documents"]))
+for c, d in zip(cols, case["documents"]):
+    with c:
+        st.markdown(f"**{'📄' if d['role'] != 'care' else '📋'} {d['label']}** · _{ {'base':'existing list','update':'prescriber update','care':'care chart'}[d['role']] }_")
+        st.code(d["text"], language=None, wrap_lines=True)
 
-def render(r):
-    s = r["sapling"]; v = s.get("violation")
-    red = r["flag"]
-    head = "🔴 Conflict, pharmacist review" if red else "No conflict found (not verified)"
-    pct = 0 if v is None else v * 100
-    colour = "#d93025" if (v or 0) >= THRESHOLD else "#9aa0a6"
-    rule = f"<div class='small'>⚙️ <b>Rule check (code, not Sapling):</b> {html.escape(r['rule'])}</div>" if r["rule"] else ""
-    sap = (f"Sapling violation probability <b>{v:.2f}</b> · raw label <code>{s.get('raw_label')}</code> · "
-           f"status <code>{s.get('status')}</code> · latency {s.get('wall_ms')} ms") if v is not None else \
-          f"Sapling call failed ({s.get('error')})"
-    return f"""<div class='row {"red" if red else "grey"}'>
-<span class='status'>{head}</span> — <b>{html.escape(r['name'])}</b>
-<div class='small'>Prescriber: {html.escape(r['prescriber_instruction'])}<br>Care record: {html.escape(r['care_record_line'])}</div>
-<div class='bar'><div class='fill' style='width:{pct:.0f}%;background:{colour}'></div></div>
-<div class='small'>{sap}</div>{rule}</div>"""
-
-def tally(rows, total, done):
-    f = sum(r["flag"] for r in rows)
-    return f"### {len(rows)} of {total} medicines checked, **{f} flagged** {'' if done else '⏳'}"
+def cell(c):
+    s = c["sapling"]; v = s.get("violation") or 0; col = "#d93025" if v >= THRESHOLD else "#9aa0a6"
+    rule = f"<br>⚙️ <b>Rule check (code, not Sapling):</b> {html.escape(c['rule'])}" if c["rule"] else ""
+    return (f"<div class='cell small'><b>{html.escape(c['doc'])}</b>: {'🔴 conflict' if c['flag'] else 'no conflict found (not verified)'}<br>"
+            f"Care: {html.escape(c['care_line'])}<div class='bar'><div class='fill' style='width:{v*100:.0f}%;background:{col}'></div></div>"
+            f"Sapling violation <b>{v:.2f}</b> · raw label <code>{s.get('raw_label')}</code> · status <code>{s.get('status')}</code> · {s.get('wall_ms')} ms{rule}</div>")
+def render(m):
+    hist = "; ".join(f"{d}: {e}" for d, e in m["prescriber_history"]) or "not in any prescriber record"
+    head = "🔴 Conflict, pharmacist review" if m["flag"] else "No conflict found (not verified)"
+    return (f"<div class='row {'red' if m['flag'] else 'grey'}'><b>{head}</b> — <b>{html.escape(m['name'])}</b>"
+            f"<div class='small'>Prescriber history: {html.escape(hist)} · currently prescribed: {'yes' if m['currently_prescribed'] else 'no'}<br>"
+            f"{html.escape(m['comparisons'][0]['prescriber_line'])}</div>" + "".join(cell(c) for c in m["comparisons"]) + "</div>")
 
 if st.button("🔍 Check records", type="primary"):
-    tally_ph = st.empty(); info_ph = st.empty(); list_ph = st.empty()
-    rows = []
+    tally = st.empty(); info = st.empty(); stream = st.empty()
     if live:
-        with st.spinner("Extracting medicines via Mubit gateway…"):
-            meds, info = extract(case, use_live=True)
-        info_ph.info(f"Extraction: **{info['mode']}**" + (f" · model {info.get('model')} · {info.get('latency_ms')} ms via {info.get('gateway')}" if info["mode"] == "live" else f" · {info.get('error')}"))
-        tally_ph.markdown(tally(rows, len(meds), False))
-        for r in judge_stream(meds):
-            rows.append(r); list_ph.markdown(''.join(render(x) for x in rows), unsafe_allow_html=True)
-            tally_ph.markdown(tally(rows, len(meds), False))
-        save(cid, rows, info)
+        q = queue.Queue(); box = {}
+        th = threading.Thread(target=lambda: box.update(r=run(case, use_live=True, on_row=q.put)), daemon=True); th.start()
+        done = []; info.info("Normalising every document via the Mubit gateway, then Sapling judges each medicine × chart…")
+        while th.is_alive() or not q.empty():
+            try: c = q.get(timeout=0.2)
+            except queue.Empty: continue
+            done.append(c); tally.markdown(f"### {len(done)} comparisons judged by Sapling, {sum(x['flag'] for x in done)} flagged ⏳")
+            stream.markdown("".join(f"<div class='small'>{'🔴' if x['flag'] else '⚪'} {html.escape(x['name'])} vs {html.escape(x['doc'])}: violation {(x['sapling'].get('violation') or 0):.2f}</div>" for x in done), unsafe_allow_html=True)
+        res = save(box["r"])
     else:
         res = load(cid)
-        if not res:
-            st.error("No cached result for this case yet. Switch to Live mode."); st.stop()
-        info = res["extraction"]
-        info_ph.info(f"Replaying cached run from {res['run_at']} · extraction was **{info.get("mode")}**" + (f" ({info.get('model')} via Mubit gateway)" if info.get("model") else ""))
-        for r in res["rows"]:
-            time.sleep(0.35); rows.append(r); list_ph.markdown(''.join(render(x) for x in rows), unsafe_allow_html=True)
-            tally_ph.markdown(tally(rows, len(res["rows"]), False))
-    tally_ph.markdown(tally(rows, len(rows), True)); list_ph.empty()
-    st.markdown("#### Pharmacist worklist (flagged first)")
-    for r in sorted(rows, key=lambda r: (not r["flag"], -(r["sapling"].get("violation") or 0))):
-        st.markdown(render(r), unsafe_allow_html=True)
-    st.caption("Sapling returned status 'unsure' on every call; MedMatch uses the raw violation probability to rank. "
-               "Grey rows are NOT confirmed safe, only not flagged.")
-
+        if not res: st.error("No cached result; use Live."); st.stop()
+        allc = [c for m in res["medicines"] for c in m["comparisons"]]
+        for i in range(1, len(allc) + 1):
+            time.sleep(0.25); tally.markdown(f"### {i} comparisons judged by Sapling, {sum(x['flag'] for x in allc[:i])} flagged ⏳")
+            stream.markdown("".join(f"<div class='small'>{'🔴' if x['flag'] else '⚪'} {html.escape(x['name'])} vs {html.escape(x['doc'])}: violation {(x['sapling'].get('violation') or 0):.2f}</div>" for x in allc[:i]), unsafe_allow_html=True)
+    stream.empty()
+    nm = res["normalisation"]
+    info.info(("Replaying cached run from " + res["run_at"] + " · " if not live else "") +
+              f"Normalisation: {nm[0].get('mode')} via {nm[0].get('gateway')} ({nm[0].get('model')}) · Mubit request ids: " + ", ".join(str(n.get('mubit_request_id')) for n in nm))
+    ncomp = sum(len(m["comparisons"]) for m in res["medicines"])
+    tally.markdown(f"### {len(res['medicines'])} medicines checked across {len(case['documents'])} documents ({ncomp} Sapling calls), **{sum(m['flag'] for m in res['medicines'])} flagged**")
+    st.markdown("#### Pharmacist worklist (one row per medicine, flagged first)")
+    for m in res["medicines"]: st.markdown(render(m), unsafe_allow_html=True)
+    with st.expander("Normalised lines (canonical name + strength + dose + frequency)"):
+        for d, ls in res["normalised_lines"].items():
+            st.markdown(f"**{d}**"); st.table([{"original": l["original"], "canonical": l["canonical_text"]} for l in ls])
+    st.caption("Sapling returned status 'unsure' on every call; MedMatch ranks by the raw violation probability. Grey = not flagged, NOT confirmed safe.")
 st.divider()
 st.caption(f"Synthetic records reconstructed from public coroner report {case['ref']} {case['source_url']}. Not for clinical use.")

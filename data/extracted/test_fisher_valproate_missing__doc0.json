@@ -1,0 +1,37 @@
+{
+  "lines": [
+    {
+      "original": "Sodium valproate 200mg/5ml oral solution 10ml BD",
+      "generic_name": "sodium valproate",
+      "strength": 200,
+      "strength_unit": "mg/5ml",
+      "dose": "10 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "sodium valproate",
+      "canonical_text": "sodium valproate 200 mg/5ml - 10 ml twice daily [active]"
+    },
+    {
+      "original": "Levetiracetam 100mg/ml 7.5ml BD",
+      "generic_name": "levetiracetam",
+      "strength": 100,
+      "strength_unit": "mg/ml",
+      "dose": "7.5 ml",
+      "frequency": "twice daily",
+      "status": "active",
+      "replaces": null,
+      "note": null,
+      "canonical_name": "levetiracetam",
+      "canonical_text": "levetiracetam 100 mg/ml - 7.5 ml twice daily [active]"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "gateway": "https://api.mubit.ai/openai/v1",
+    "model": "gpt-4o-mini",
+    "latency_ms": 2268,
+    "mubit_request_id": "mreq_01a16cd70cb57890a059e8941e16a972"
+  }
+}
