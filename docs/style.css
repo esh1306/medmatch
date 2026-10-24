@@ -158,3 +158,7 @@ h1{font-size:28px;line-height:1.25;margin:0 0 8px;font-weight:650;letter-spacing
 .foot{display:flex;gap:24px;justify-content:space-between;padding:12px 40px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3)}
 .foot a{color:var(--ink2)}
 @media (max-width:1300px){main{padding:24px 32px 16px}.top,.progress,.foot{padding-left:32px;padding-right:32px}.cell{width:240px}h1{font-size:24px}.lede{margin-bottom:24px}}
+.hand{font-style:italic;letter-spacing:.01em}
+.compact .paper{padding:12px 14px;font-size:11px}.compact .paper .pt{display:none}.compact .paper td,.compact .paper th{padding:3px 4px}.compact .paper .stamp{display:none}.compact .paper .lh{margin-bottom:6px;padding-bottom:6px}
+.compact .docs{gap:16px}.compact .hand{font-size:12px}.compact .paper.handbg{background:#fff}
+.quote a{word-break:normal}
