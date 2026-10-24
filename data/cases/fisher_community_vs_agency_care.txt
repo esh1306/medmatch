@@ -1,0 +1,10 @@
+[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]
+Source: PFD 2026-0166  https://www.judiciary.uk/prevention-of-future-death-reports/john-fisher-prevention-of-future-deaths-report/
+
+HOMECARE eMAR  - Client JF  - Visits: 3x daily  - Created 15/04/2025 by supervisor
+ID  Medication                         Dose     Schedule        Form
+01  Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea    liquid
+02  Lansoprazole 15mg orodisp          1 tab    Morning         blister
+03  Senna 7.5mg                        2 tabs   Bed PRN         blister
+04  Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea   liquid
+(no further medicines recorded)

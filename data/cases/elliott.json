@@ -1,0 +1,13 @@
+{
+  "id": "elliott",
+  "title": "Elliott: hospital discharge letter vs care home electronic MAR",
+  "ref": "PFD 2025-0515 (Thompson Elliott, report dated 14 Oct 2025)",
+  "source_url": "https://www.judiciary.uk/prevention-of-future-death-reports/thompson-elliott-prevention-of-future-deaths-report/",
+  "news_url": "",
+  "coroner_fact": "Oramorph was switched to oxycodone because of its impact on his kidneys; oxycodone was then 'incorrectly added to the record as new and additional medication - not replacement medication'.",
+  "left_label": "Hospital discharge letter, 18 Dec 2024 (prescriber)",
+  "left": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2025-0515  https://www.judiciary.uk/prevention-of-future-death-reports/thompson-elliott-prevention-of-future-deaths-report/\n\nDISCHARGE SUMMARY - Ward 7   Date of discharge: 18/12/2024   Destination: residential care home\nPt: T.E.   Reason for admission: pain / reduced kidney function\n\nMEDICATION CHANGES\nSTOPPED:  Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP. Reason: impact on renal function.\nSTARTED:  Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).\nUNCHANGED:\n  Paracetamol 500mg 2 tabs QDS\n  Amlodipine 5mg OD\n  Laxido 1 sachet BD\n  Atorvastatin 20mg ON\n",
+  "right_label": "Care home electronic MAR, 20 Dec 2024 (care record)",
+  "right": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2025-0515  https://www.judiciary.uk/prevention-of-future-death-reports/thompson-elliott-prevention-of-future-deaths-report/\n\neMAR - Resident T.E. - Room 12 - printed 20/12/2024 21:00\nMedicine                          Instruction           Status   Notes\nParacetamol 500mg tab             2 QDS                 Active\nAmlodipine 5mg tab                1 OD                  Active\nLaxido sachet                     1 BD                  Active\nAtorvastatin 20mg                 1 night               Active\nOramorph 10mg/5ml                 2.5ml 4hrly PRN       Active   given 18/12, 19/12, 20/12\nOxycodone 5mg/5ml liquid          2.5ml 4hrly PRN       Active   NEW - added 20/12 (additional)\nDischarge letter: not located\n",
+  "synthetic_note": "SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use."
+}

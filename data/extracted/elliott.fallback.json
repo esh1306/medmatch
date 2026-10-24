@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Oramorph (morphine oral solution)",
+    "prescriber_instruction": "Oramorph STOPPED on discharge 18/12/2024 because of impact on renal function; replaced by oxycodone",
+    "care_record_line": "Oramorph 10mg/5ml 2.5ml 4-hourly PRN, status Active, given 18/12, 19/12 and 20/12"
+  },
+  {
+    "name": "Oxycodone",
+    "prescriber_instruction": "Oxycodone oral solution 5mg/5ml 2.5ml 4-hourly PRN, REPLACES Oramorph",
+    "care_record_line": "Oxycodone 5mg/5ml 2.5ml 4-hourly PRN, Active, added 20/12 as new additional medicine alongside Oramorph"
+  },
+  {
+    "name": "Paracetamol",
+    "prescriber_instruction": "Paracetamol 500mg 2 tablets four times daily (unchanged)",
+    "care_record_line": "Paracetamol 500mg 2 four times daily, Active"
+  },
+  {
+    "name": "Amlodipine",
+    "prescriber_instruction": "Amlodipine 5mg once daily (unchanged)",
+    "care_record_line": "Amlodipine 5mg 1 once daily, Active"
+  },
+  {
+    "name": "Laxido",
+    "prescriber_instruction": "Laxido 1 sachet twice daily (unchanged)",
+    "care_record_line": "Laxido 1 sachet twice daily, Active"
+  },
+  {
+    "name": "Atorvastatin",
+    "prescriber_instruction": "Atorvastatin 20mg at night (unchanged)",
+    "care_record_line": "Atorvastatin 20mg 1 at night, Active"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "id": "fisher_community_vs_agency",
+  "title": "Fisher (step 2): community team chart vs care agency electronic chart",
+  "ref": "PFD 2026-0166 (John Fisher, report dated 19 Mar 2026)",
+  "source_url": "https://www.judiciary.uk/prevention-of-future-death-reports/john-fisher-prevention-of-future-deaths-report/",
+  "news_url": "",
+  "coroner_fact": "'although the UCR handwritten forms included sodium valproate oral solution, this was not added at all into the Coastal Homecare electronic MAR chart' ... 'there is no system in place to cross check'.",
+  "left_label": "Community response team handwritten MAR (handover source)",
+  "left": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2026-0166  https://www.judiciary.uk/prevention-of-future-death-reports/john-fisher-prevention-of-future-deaths-report/\n\nURGENT COMMUNITY RESPONSE - MAR handed over to care agency 15/04/25\nNa valproate oral soln 200mg/5ml   10 ml   BD (08:00, 20:00)\nLevetiracetam oral soln 100mg/ml   7.5 ml  BD\nLansoprazole 15mg                  1       OD mane\nSenna 7.5mg                        2       ON PRN\nAmoxicillin susp (chest inf.)      20 ml   TDS - stop date not written\n",
+  "right_label": "Care agency electronic MAR, from 15 Apr 2025 (care record)",
+  "right": "[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]\nSource: PFD 2026-0166  https://www.judiciary.uk/prevention-of-future-death-reports/john-fisher-prevention-of-future-deaths-report/\n\nHOMECARE eMAR  - Client JF  - Visits: 3x daily  - Created 15/04/2025 by supervisor\nID  Medication                         Dose     Schedule        Form\n01  Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea    liquid\n02  Lansoprazole 15mg orodisp          1 tab    Morning         blister\n03  Senna 7.5mg                        2 tabs   Bed PRN         blister\n04  Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea   liquid\n(no further medicines recorded)\n",
+  "synthetic_note": "SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use."
+}

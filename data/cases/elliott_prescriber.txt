@@ -1,0 +1,14 @@
+[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]
+Source: PFD 2025-0515  https://www.judiciary.uk/prevention-of-future-death-reports/thompson-elliott-prevention-of-future-deaths-report/
+
+DISCHARGE SUMMARY - Ward 7   Date of discharge: 18/12/2024   Destination: residential care home
+Pt: T.E.   Reason for admission: pain / reduced kidney function
+
+MEDICATION CHANGES
+STOPPED:  Oramorph (morphine sulfate oral soln 10mg/5ml) - STOP. Reason: impact on renal function.
+STARTED:  Oxycodone oral soln 5mg/5ml 2.5ml 4-hourly PRN - REPLACES Oramorph (renal).
+UNCHANGED:
+  Paracetamol 500mg 2 tabs QDS
+  Amlodipine 5mg OD
+  Laxido 1 sachet BD
+  Atorvastatin 20mg ON

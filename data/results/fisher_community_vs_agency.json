@@ -1,0 +1,159 @@
+{
+  "case": "fisher_community_vs_agency",
+  "run_at": "2026-10-24 08:16:41 BST",
+  "policy": "A care medication record must match the most recent prescriber instruction: discontinued medicines must not be given, replacements must replace not add, doses must match, and every prescribed medicine must be on the administration chart.",
+  "claim": "The care record is consistent with the prescriber instruction.",
+  "threshold": 0.4,
+  "extraction": {
+    "mode": "live",
+    "model": "gpt-4o-mini",
+    "latency_ms": 3579,
+    "gateway": "https://api.mubit.ai/openai/v1"
+  },
+  "rows": [
+    {
+      "name": "Amoxicillin suspension",
+      "prescriber_instruction": "Amoxicillin susp (chest inf.)      20 ml   TDS - stop date not written",
+      "care_record_line": "Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.1678694000845041,
+          "violation": 0.16714394881761965,
+          "insufficient_information": 0.6299195044532969,
+          "inconsistent_context": 0.035067146644579474
+        },
+        "violation": 0.16714394881761965,
+        "model_ms": 1018.6425729989423,
+        "wall_ms": 1603,
+        "http": 200,
+        "evidence": "Prescriber record: Amoxicillin suspension: Amoxicillin susp (chest inf.)      20 ml   TDS - stop date not written\nCare record: Amoxicillin suspension: Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Levetiracetam oral solution",
+      "prescriber_instruction": "Levetiracetam oral soln 100mg/ml   7.5 ml  BD",
+      "care_record_line": "Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.08947609621295562,
+          "violation": 0.38481526529738913,
+          "insufficient_information": 0.4958449865171962,
+          "inconsistent_context": 0.029863651972459035
+        },
+        "violation": 0.38481526529738913,
+        "model_ms": 1024.4730279991927,
+        "wall_ms": 2634,
+        "http": 200,
+        "evidence": "Prescriber record: Levetiracetam oral solution: Levetiracetam oral soln 100mg/ml   7.5 ml  BD\nCare record: Levetiracetam oral solution: Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Lansoprazole",
+      "prescriber_instruction": "Lansoprazole 15mg                  1       OD mane",
+      "care_record_line": "Lansoprazole 15mg orodisp          1 tab    Morning",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.3063065394769588,
+          "violation": 0.08734203259888099,
+          "insufficient_information": 0.5830193870632302,
+          "inconsistent_context": 0.023332040860930034
+        },
+        "violation": 0.08734203259888099,
+        "model_ms": 1014.4966860025306,
+        "wall_ms": 3648,
+        "http": 200,
+        "evidence": "Prescriber record: Lansoprazole: Lansoprazole 15mg                  1       OD mane\nCare record: Lansoprazole: Lansoprazole 15mg orodisp          1 tab    Morning"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Sodium Valproate",
+      "prescriber_instruction": "Na valproate oral soln 200mg/5ml   10 ml   BD (08:00, 20:00)",
+      "care_record_line": "NOT ON CHART",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "violation",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information"
+        ],
+        "probabilities": {
+          "supported": 0.022783374560977423,
+          "violation": 0.8793388710806018,
+          "insufficient_information": 0.09437305464164844,
+          "inconsistent_context": 0.0035046997167725124
+        },
+        "violation": 0.8793388710806018,
+        "model_ms": 1023.8484469991818,
+        "wall_ms": 4671,
+        "http": 200,
+        "evidence": "Prescriber record: Sodium Valproate: Na valproate oral soln 200mg/5ml   10 ml   BD (08:00, 20:00)\nCare record: Sodium Valproate: NOT ON CHART"
+      },
+      "rule": "On the prescriber list but missing from the care chart",
+      "sapling_flag": true,
+      "flag": true
+    },
+    {
+      "name": "Senna",
+      "prescriber_instruction": "Senna 7.5mg                        2       ON PRN",
+      "care_record_line": "Senna 7.5mg                        2 tabs   Bed PRN",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.2734081299944072,
+          "violation": 0.08705539928258386,
+          "insufficient_information": 0.6138239877298718,
+          "inconsistent_context": 0.025712482993137192
+        },
+        "violation": 0.08705539928258386,
+        "model_ms": 1014.687139999296,
+        "wall_ms": 5690,
+        "http": 200,
+        "evidence": "Prescriber record: Senna: Senna 7.5mg                        2       ON PRN\nCare record: Senna: Senna 7.5mg                        2 tabs   Bed PRN"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    }
+  ]
+}

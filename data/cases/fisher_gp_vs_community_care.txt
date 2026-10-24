@@ -1,0 +1,13 @@
+[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]
+Source: PFD 2026-0166  https://www.judiciary.uk/prevention-of-future-death-reports/john-fisher-prevention-of-future-deaths-report/
+
+URGENT COMMUNITY RESPONSE - MEDICATION ADMINISTRATION RECORD (handwritten, transcribed)
+Client: J Fisher   Period: 09/04/25 - 15/04/25   Allergies: NKDA
+
+Medicine                      | Dose / route   | Times      | Signed
+Na valproate liquid 200/5     | 10 ml PO       | 08:00 20:00| ✓✓✓✓✓✓✓
+Levetiracetam liquid          | 7.5 ml PO      | 08:00 20:00| ✓✓✓✓✓✓✓
+Phenobarbital 30mg tab        | 1 tab PO       | 08:00 20:00| ✓✓✓✓✓✓✓  (from blister? box?)
+Lansoprazole 15mg             | 1 PO           | 08:00      | ✓✓✓✓✓✓✓
+Amoxicillin liquid            | 20 ml PO       | TDS        | ✓✓✓✓✓ (course end?)
+Senna                         | 2 tabs PO      | night PRN  | -

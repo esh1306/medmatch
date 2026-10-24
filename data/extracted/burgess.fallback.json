@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Brivaracetam",
+    "prescriber_instruction": "Brivaracetam 10mg/ml oral solution 4ml twice daily (neurology, confirmed by mother)",
+    "care_record_line": "Brivaracetam 10mg/ml solution 10ml twice daily, started 26/07/2022 after NHS 111 call"
+  },
+  {
+    "name": "Omeprazole",
+    "prescriber_instruction": "Omeprazole 20mg once daily (unchanged)",
+    "care_record_line": "Omeprazole 20mg 1 cap once daily"
+  },
+  {
+    "name": "Macrogol",
+    "prescriber_instruction": "Macrogol 1 sachet once daily (unchanged)",
+    "care_record_line": "Macrogol 1 sachet once daily"
+  },
+  {
+    "name": "Cholecalciferol (vitamin D)",
+    "prescriber_instruction": "Cholecalciferol 800 units once daily (unchanged)",
+    "care_record_line": "Vit D3 800iu 1 tab once daily"
+  }
+]

@@ -1,0 +1,189 @@
+{
+  "case": "fisher_gp_vs_community",
+  "run_at": "2026-10-24 08:16:27 BST",
+  "policy": "A care medication record must match the most recent prescriber instruction: discontinued medicines must not be given, replacements must replace not add, doses must match, and every prescribed medicine must be on the administration chart.",
+  "claim": "The care record is consistent with the prescriber instruction.",
+  "threshold": 0.4,
+  "extraction": {
+    "mode": "live",
+    "model": "gpt-4o-mini",
+    "latency_ms": 6283,
+    "gateway": "https://api.mubit.ai/openai/v1"
+  },
+  "rows": [
+    {
+      "name": "Amoxicillin",
+      "prescriber_instruction": "Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]",
+      "care_record_line": "Amoxicillin liquid            | 20 ml PO       | TDS        | \u2713\u2713\u2713\u2713\u2713 (course end?)",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.20420919881154015,
+          "violation": 0.07320913830598914,
+          "insufficient_information": 0.7022886046868572,
+          "inconsistent_context": 0.020293058195613535
+        },
+        "violation": 0.07320913830598914,
+        "model_ms": 1030.6390839978121,
+        "wall_ms": 1628,
+        "http": 200,
+        "evidence": "Prescriber record: Amoxicillin: Amoxicillin 125mg/5ml susp - 20ml TDS x 5 days (started 07/04/25)  [acute]\nCare record: Amoxicillin: Amoxicillin liquid            | 20 ml PO       | TDS        | \u2713\u2713\u2713\u2713\u2713 (course end?)"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Phenobarbital",
+      "prescriber_instruction": "Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **",
+      "care_record_line": "Phenobarbital 30mg tab        | 1 tab PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713  (from blister? box?)",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "violation",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.03862053309727025,
+          "violation": 0.8162428795711817,
+          "insufficient_information": 0.1362237219102239,
+          "inconsistent_context": 0.008912865421324195
+        },
+        "violation": 0.8162428795711817,
+        "model_ms": 1038.2072490028804,
+        "wall_ms": 2668,
+        "http": 200,
+        "evidence": "Prescriber record: Phenobarbital: Phenobarbital 30mg tabs - 1 BD  ** DISCONTINUED 08/04/2025 by GP **\nCare record: Phenobarbital: Phenobarbital 30mg tab        | 1 tab PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713  (from blister? box?)"
+      },
+      "rule": null,
+      "sapling_flag": true,
+      "flag": true
+    },
+    {
+      "name": "Levetiracetam",
+      "prescriber_instruction": "Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]",
+      "care_record_line": "Levetiracetam liquid          | 7.5 ml PO      | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.2062798246850645,
+          "violation": 0.07445707600306711,
+          "insufficient_information": 0.6982234760265931,
+          "inconsistent_context": 0.02103962328527523
+        },
+        "violation": 0.07445707600306711,
+        "model_ms": 1037.0963470013521,
+        "wall_ms": 3713,
+        "http": 200,
+        "evidence": "Prescriber record: Levetiracetam: Levetiracetam 100mg/ml oral soln - 7.5ml BD  [repeat]\nCare record: Levetiracetam: Levetiracetam liquid          | 7.5 ml PO      | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Senna",
+      "prescriber_instruction": "Senna 7.5mg tabs - 2 ON prn  [repeat]",
+      "care_record_line": "Senna                         | 2 tabs PO      | night PRN  | -",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.12012474459563906,
+          "violation": 0.19436464777974996,
+          "insufficient_information": 0.6527963284360682,
+          "inconsistent_context": 0.03271427918854273
+        },
+        "violation": 0.19436464777974996,
+        "model_ms": 1010.1864599964756,
+        "wall_ms": 4723,
+        "http": 200,
+        "evidence": "Prescriber record: Senna: Senna 7.5mg tabs - 2 ON prn  [repeat]\nCare record: Senna: Senna                         | 2 tabs PO      | night PRN  | -"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Lansoprazole",
+      "prescriber_instruction": "Lansoprazole 15mg orodisp tab - 1 OD  [repeat]",
+      "care_record_line": "Lansoprazole 15mg             | 1 PO           | 08:00      | \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.09263348716291371,
+          "violation": 0.35921104910280893,
+          "insufficient_information": 0.5143403866615077,
+          "inconsistent_context": 0.0338150770727697
+        },
+        "violation": 0.35921104910280893,
+        "model_ms": 1031.4193200028967,
+        "wall_ms": 5754,
+        "http": 200,
+        "evidence": "Prescriber record: Lansoprazole: Lansoprazole 15mg orodisp tab - 1 OD  [repeat]\nCare record: Lansoprazole: Lansoprazole 15mg             | 1 PO           | 08:00      | \u2713\u2713\u2713\u2713\u2713\u2713\u2713"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    },
+    {
+      "name": "Sodium valproate",
+      "prescriber_instruction": "Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]",
+      "care_record_line": "Na valproate liquid 200/5     | 10 ml PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713",
+      "sapling": {
+        "status": "unsure",
+        "raw_label": "insufficient_information",
+        "prediction_set": [
+          "supported",
+          "violation",
+          "insufficient_information",
+          "inconsistent_context"
+        ],
+        "probabilities": {
+          "supported": 0.20812317778851736,
+          "violation": 0.07709332263766852,
+          "insufficient_information": 0.6923006036635834,
+          "inconsistent_context": 0.02248289591023083
+        },
+        "violation": 0.07709332263766852,
+        "model_ms": 1028.8659489997372,
+        "wall_ms": 6789,
+        "http": 200,
+        "evidence": "Prescriber record: Sodium valproate: Sodium valproate 200mg/5ml oral soln - 10ml BD  [repeat]\nCare record: Sodium valproate: Na valproate liquid 200/5     | 10 ml PO       | 08:00 20:00| \u2713\u2713\u2713\u2713\u2713\u2713\u2713"
+      },
+      "rule": null,
+      "sapling_flag": false,
+      "flag": false
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "medicines": [
+    {
+      "name": "Levetiracetam oral solution",
+      "prescriber_instruction": "Levetiracetam oral soln 100mg/ml   7.5 ml  BD",
+      "care_record_line": "Levetiracetam 100mg/ml oral soln   7.5ml    Morning, Tea"
+    },
+    {
+      "name": "Lansoprazole",
+      "prescriber_instruction": "Lansoprazole 15mg                  1       OD mane",
+      "care_record_line": "Lansoprazole 15mg orodisp          1 tab    Morning"
+    },
+    {
+      "name": "Senna",
+      "prescriber_instruction": "Senna 7.5mg                        2       ON PRN",
+      "care_record_line": "Senna 7.5mg                        2 tabs   Bed PRN"
+    },
+    {
+      "name": "Amoxicillin suspension",
+      "prescriber_instruction": "Amoxicillin susp (chest inf.)      20 ml   TDS - stop date not written",
+      "care_record_line": "Amoxicillin 125mg/5ml              20ml     Mor/Lunch/Tea"
+    },
+    {
+      "name": "Sodium Valproate",
+      "prescriber_instruction": "Na valproate oral soln 200mg/5ml   10 ml   BD (08:00, 20:00)",
+      "care_record_line": "NOT ON CHART"
+    }
+  ],
+  "info": {
+    "mode": "live",
+    "model": "gpt-4o-mini",
+    "latency_ms": 3579,
+    "gateway": "https://api.mubit.ai/openai/v1"
+  }
+}

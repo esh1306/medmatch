@@ -1,0 +1,9 @@
+[SYNTHETIC record reconstructed from facts stated in a public coroner report. Other medicines, unstated doses and layout are illustrative. Not a real patient record. Not for clinical use.]
+Source: PFD 2024-0077  https://www.judiciary.uk/wp-content/uploads/2024/02/2024-0077-Response-from-Godfrey-Care.pdf
+
+MAR CHART  Resident: Mr B   Week commencing 25/07/2022
+22-25/07: brivaracetam WITHHELD - awaiting written instruction from prescriber
+Brivaracetam 10mg/ml soln   10 ml   BD  (started 26/07 after NHS 111 call)
+Omeprazole 20mg             1 cap   OD
+Macrogol                    1 sach  OD
+Vit D3 800iu                1 tab   OD
