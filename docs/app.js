@@ -4,18 +4,21 @@ const CASES={
          {doc:1,date:"9 to 15 Apr 2025",place:"Community response team",what:"Handwritten chart still gives phenobarbital twice a day.",bad:1},
          {doc:2,date:"15 Apr 2025",place:"Home care agency",what:"eMAR set up without sodium valproate. Six days of missed doses.",bad:1}],
   outcome:"Mr Fisher died in May 2025. The coroner found there was no system in place to cross check the records.",
-  quote:"There was no system in place to cross check."},
+  quote:"There was no system in place to cross check.",
+  cap:"The GP stopped phenobarbital, yet the community team’s handwritten chart kept giving it twice a day, and the agency eMAR left off his sodium valproate for six days. Nobody compared the three records."},
  elliott:{name:"Elliott",ref:"PFD 2025-0515",pt:["T. Elliott (synthetic)","DOB xx/xx/1941","Chronic kidney disease"],
   stops:[{doc:0,date:"Before admission",place:"GP surgery",what:"Repeat list includes Oramorph (morphine sulfate)."},
          {doc:1,date:"Hospital discharge",place:"Hospital ward",what:"Oramorph switched to oxycodone because of his kidneys."},
          {doc:2,date:"After discharge",place:"Care home",what:"Oxycodone added as new medication; Oramorph not removed.",bad:1}],
   outcome:"The coroner reported that oxycodone was added as new and additional medication, not replacement medication.",
-  quote:"Incorrectly added to the record as new and additional medication - not replacement medication."},
+  quote:"Incorrectly added to the record as new and additional medication - not replacement medication.",
+  cap:"The hospital replaced Oramorph with oxycodone because of his kidneys. The care home added oxycodone as new and never removed Oramorph. Nobody compared the discharge letter with the care home record."},
  burgess:{name:"Burgess",ref:"PFD 2024-0077",pt:["M. Burgess (synthetic)","DOB xx/xx/19xx","Epilepsy"],
   stops:[{doc:0,date:"July 2022",place:"Neurology and GP",what:"Brivaracetam 4 ml twice daily, confirmed by neurology."},
          {doc:1,date:"26 Jul 2022",place:"Care home",what:"10 ml twice daily started after a 111 call.",bad:1}],
   outcome:"The care provider's response records that 4 ml was the correct dose while 10 ml twice daily was being given.",
-  quote:"The appropriate dose of Brivaracetam was 4ml twice daily."}
+  quote:"The appropriate dose of Brivaracetam was 4ml twice daily.",
+  cap:"Neurology confirmed brivaracetam 4 ml twice daily. After a 111 call the care home chart gave 10 ml twice daily. Nobody compared the chart with the prescription."}
 };
 const STEPS=["Journey","Documents","Extract","Normalise","Check","Rule check","Worklist"];
 let cur="fisher",step=0,D={},timers=[],playing=false,playT=null;
@@ -52,9 +55,17 @@ function paper(d,i,{mini=false,rot=0}={}){const doc=d.case.documents[i],k=docKin
   <div class="lh"><div><div class="org">${org}</div><div class="sub">${sub}</div></div><div class="sub" style="text-align:right">${esc(doc.label)}</div></div>
   <div class="pt"><span>Patient</span><span>Born</span><span>Condition</span><b>${C.pt[0]}</b><b>${C.pt[1]}</b><b>${C.pt[2]}</b></div>
   ${body}<div class="stamp">SYNTHETIC, reconstructed from coroner report ${C.ref}</div></div>`}
+const CAPS=[null,
+ "These are the records each team actually worked from. Same patient, same medicines, different formats and wording, which is why a quick glance misses the gap.",
+ "An LLM, called through the Mubit gateway, turns every medicine line into structured fields, so each record can be compared line by line.",
+ "Brand names, abbreviations and units are mapped to one form first, so harmless wording differences are not reported as conflicts.",
+ "This is the hard part, done by Banyan Sapling: for every medicine and every care chart, it judges whether the chart contradicts the prescriber record. Red cells (violation 0.4 or more) are flagged.",
+ "A plain code check adds medicines that are missing from, or extra on, a chart. It is labelled separately so Sapling\u2019s own judgement stays visible.",
+ "The pharmacist gets the exact lines that disagree, side by side, instead of re-reading every chart by hand."];
+function cap(t){return `<div class="caption"><span>What is happening</span><p>${t}</p></div>`}
 function head(k,h,l){return `<div class="kicker">${k}</div><h1>${h}</h1><p class="lede">${l}</p>`}
 async function render(){clear();nav();const d=await load(cur),C=CASES[cur],r=d.result;const docs=d.case.documents;
- const S=[journey,documents,extract,normalise,check,rules,worklist][step];stage.innerHTML=`<div class="scene">${S(d,C,r,docs)}</div>`;post[step]&&post[step](d,C,r,docs);schedule()}
+ const S=[journey,documents,extract,normalise,check,rules,worklist][step];stage.innerHTML=`<div class="scene">${S(d,C,r,docs).replace('</p>','</p>'+cap(step==0?C.cap:CAPS[step]))}</div>`;post[step]&&post[step](d,C,r,docs);schedule()}
 function journey(d,C,r,docs){return head(`Case ${C.name} · ${C.ref}`,"One patient, several care settings, several medicine records","Each handover produces a new medicines record. Nobody checks the new one against the last prescriber instruction.")+
  `<div class="journey"><div class="jline"><i id="jl"></i></div><div class="stops" style="grid-template-columns:repeat(${C.stops.length},1fr)">${C.stops.map((s,i)=>`<div class="stop ${s.bad?"bad":""}" id="st${i}"><div class="dot"></div><div class="date">${s.date}</div><div class="place">${s.place}</div><div class="what">${s.what}</div><div class="thumb">${paper(d,s.doc,{mini:true})}</div></div>`).join("")}</div>
  <div class="card outcome" id="oc"><span class="tag">Outcome</span><span>${C.outcome}</span></div></div>`}
