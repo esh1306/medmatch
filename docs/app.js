@@ -100,4 +100,4 @@ function worklist(d,C,r){const flagged=r.medicines.filter(m=>m.comparisons.some(
   <div><div class="card tally"><div class="big">${flagged.length}</div><div style="color:var(--ink2);margin:4px 0 12px">flagged for pharmacist review</div>
   <div class="row"><span>Medicines checked</span><b>${r.medicines.length}</b></div><div class="row"><span>Documents</span><b>${d.case.documents.length}</b></div><div class="row"><span>Sapling calls</span><b>${n}</b></div><div class="row"><span>LLM calls via Mubit</span><b>${r.normalisation.length}</b></div><div class="row" style="border:0"><span>Run</span><b>${esc(r.run_at)}</b></div></div>
   <div class="card quote"><div class="kicker">Coroner</div><blockquote>“${esc(C.quote)}”</blockquote><a href="${esc(d.case.source_url)}">${esc(d.case.ref)}</a></div></div></div>`}
-render();
+// initial render handled by live.js

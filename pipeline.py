@@ -1,3 +1,4 @@
+from pathlib import Path
 """Whole-list reconciliation. Documents: one 'base' (patient's full existing medicines list from the GP/prescriber),
 zero or more 'update' prescriber documents (discharge letter, neurology instruction), and one or more 'care' charts.
 1) normalise every document (LLM via Mubit gateway + synonym table)
@@ -56,10 +57,13 @@ def compare(name, pres, care_lines, care_label):
     return {"name": name, "doc": care_label, "prescriber_line": p_text, "care_line": c_text, "rule": rule,
             "evidence": f"Prescriber record: {p_text}\nCare record: {c_text}"}
 
-def run(case, use_live=True, workers=8, on_row=None):
+def run(case, use_live=True, workers=8, on_row=None, on_norm=None, cache_dir=None):
     t0 = time.time(); docs = case["documents"]; infos = []
     def norm(i):
-        return normalise_doc(docs[i]["text"], docs[i]["label"], ROOT / f"data/extracted/{case['id']}__doc{i}.json", use_live)
+        cd = Path(cache_dir) if cache_dir else ROOT / "data/extracted"
+        r = normalise_doc(docs[i]["text"], docs[i]["label"], cd / f"{case['id']}__doc{i}.json", use_live)
+        if on_norm: on_norm(docs[i]["label"], r[1], r[0])
+        return r
     with ThreadPoolExecutor(len(docs)) as ex: res = list(ex.map(norm, range(len(docs))))
     docs_lines = [(d, r[0]) for d, r in zip(docs, res)]; infos = [dict(doc=d["label"], **r[1]) for d, r in zip(docs, res)]
     pres = build_prescribed(docs_lines)
@@ -68,7 +72,7 @@ def run(case, use_live=True, workers=8, on_row=None):
     names = list(dict.fromkeys(names))
     comps = [compare(n, pres.get(n), [l for l in ls if l["canonical_name"] == n], d["label"]) for n in names for d, ls in cares]
     def judge(c):
-        s = sapling_raw(c["evidence"]); c["sapling"] = s
+        t1 = time.time(); s = sapling_raw(c["evidence"]); s["wall_ms"] = round((time.time() - t1) * 1000); c["sapling"] = s
         c["sapling_flag"] = s.get("violation") is not None and s["violation"] >= THRESHOLD
         c["flag"] = bool(c["sapling_flag"] or c["rule"])
         if on_row: on_row(c)

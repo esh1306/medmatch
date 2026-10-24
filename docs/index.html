@@ -5,7 +5,7 @@
 <body>
 <header class="top">
   <div class="brand"><span class="mark"></span>MedMatch</div>
-  <nav class="cases" id="cases"></nav>
+  <nav class="tabs" id="tabs"><button data-t="landing">Problem</button><button data-t="story">Journey</button><button data-t="live">Try it live</button></nav><nav class="cases" id="cases"></nav>
   <div class="controls">
     <button id="prev" class="btn ghost" aria-label="Previous step">Back</button>
     <button id="play" class="btn ghost">Play</button>
@@ -13,11 +13,11 @@
   </div>
 </header>
 <div class="progress" id="progress"></div>
-<main id="stage"></main>
+<main id="stage"></main><main id="landing" class="land"></main><main id="live" class="livep"></main>
 <footer class="foot">
   <span>Synthetic data reconstructed from public coroner reports. Not for clinical use.</span>
   <span>Sapling outputs are shown as returned: every status was <em>unsure</em>; we flag at violation &ge; 0.4.</span>
   <a href="https://github.com/esh1306/medmatch">github.com/esh1306/medmatch</a>
 </footer>
-<script src="app.js"></script>
+<script src="config.js"></script><script src="app.js"></script><script src="live.js"></script>
 </body></html>
